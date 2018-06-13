@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">SAAES</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="main_title">Medições de Consumo</string>
+    <string name="lorem_ipsum">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</string>
+    <string name="Começar">Começar</string>
+    <string name="testLabel">Label</string>
+    <string name="tensao">Tensão (V)</string>
+    <string name="corrente">Corrente (A)</string>
+    <string name="potencia_ativa">Potência Ativa (kW/cv)</string>
+    <string name="potencia_reativa">Potência Reativa (kVAr)</string>
+    <string name="fator_potencia">Fator de Potência</string>
+    <string name="rotacao">Rotação (rpm)</string>
+    <string name="fabricante">Fabricante</string>
+    <string name="motor">MOTOR</string>
+    <string name="bomba">BOMBA</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

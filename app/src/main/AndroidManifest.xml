@@ -11,10 +11,19 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
+
+                <!-- Pode corresponder o action.Main com o main() -->
                 <action android:name="android.intent.action.MAIN" />
 
+                <!-- Exibe o atalho do app na launcher do android -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Form1Activity">
+
+        </activity>
+        <activity android:name=".Form2Activity">
+
         </activity>
     </application>
 
