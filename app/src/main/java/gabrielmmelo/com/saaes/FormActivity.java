@@ -1,27 +1,15 @@
-/*
-    TODO:
-    Entender o funcionamento da FragmentTransations e FragmentManager
-
- */
-
 package gabrielmmelo.com.saaes;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.PersistableBundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.support.design.widget.FloatingActionButton;
 
-public class Form1Activity extends DebugActivity {
+public class FormActivity extends DebugActivity {
 
     private int fragment;
-
     private FragmentManager fm = getSupportFragmentManager();
     private DadosPlacaFragment dadosPlacaFragment = new DadosPlacaFragment();
     private DadosMedicaoFragment dadosMedicaoFragment = new DadosMedicaoFragment();
@@ -32,11 +20,9 @@ public class Form1Activity extends DebugActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form1);
+        setContentView(R.layout.activity_form);
         if (savedInstanceState == null){
-
             FragmentTransaction ft = fm.beginTransaction();
-
             ft.add(R.id.layoutDadosPlacaFragment, dadosPlacaFragment, "DadosPlacaFragment");
             ft.add(R.id.layoutDadosMedicaoFragment, dadosMedicaoFragment, "DadosMedicaoFragment");
             ft.detach(dadosMedicaoFragment);
@@ -44,7 +30,6 @@ public class Form1Activity extends DebugActivity {
             ft.detach(dadosSistemaFragment);
             ft.commit();
             fragment = 1;
-
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -92,7 +77,6 @@ public class Form1Activity extends DebugActivity {
         };
     }
 
-
     private View.OnClickListener onClickFabPrevious(){
         return new FloatingActionButton.OnClickListener(){
             @Override
@@ -125,17 +109,6 @@ public class Form1Activity extends DebugActivity {
                 }
             }
         };
-
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-    }
-
-    private Context getContext(){
-        return this;
     }
 
     @Override
@@ -145,7 +118,6 @@ public class Form1Activity extends DebugActivity {
             finish();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

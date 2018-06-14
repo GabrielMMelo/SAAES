@@ -2,14 +2,11 @@ package gabrielmmelo.com.saaes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.support.design.widget.FloatingActionButton;
 import android.widget.TextView;
 
 public class Form2Activity extends DebugActivity {
@@ -48,7 +45,7 @@ public class Form2Activity extends DebugActivity {
         return new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Form1Activity.class);
+                Intent intent = new Intent(getContext(), FormActivity.class);
                 startActivity(intent);
             }
         };

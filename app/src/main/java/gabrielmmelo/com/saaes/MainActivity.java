@@ -1,9 +1,7 @@
 package gabrielmmelo.com.saaes;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -38,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         return new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Form1Activity.class);
+                Intent intent = new Intent(getContext(), FormActivity.class);
                 startActivity(intent);
             }
         };
