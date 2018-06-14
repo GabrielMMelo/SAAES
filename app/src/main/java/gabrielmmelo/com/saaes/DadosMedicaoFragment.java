@@ -21,6 +21,8 @@ public class DadosMedicaoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dados_medicao, container, false);
+
+        getActivity().setTitle("MEDIÇÕES");
         return view;
     }
 

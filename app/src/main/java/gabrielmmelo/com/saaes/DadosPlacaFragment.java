@@ -25,6 +25,9 @@ public class DadosPlacaFragment extends Fragment {
             tensao.setText(this.tensao);
         }
 
+        getActivity().setTitle("PLACA");
+
+
         return view;
     }
 

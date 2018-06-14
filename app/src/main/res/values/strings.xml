@@ -5,15 +5,29 @@
     <string name="lorem_ipsum">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</string>
     <string name="Começar">Começar</string>
     <string name="testLabel">Label</string>
+
+    <!-- MOTOR -->
+    <string name="motor">MOTOR</string>
     <string name="tensao">Tensão (V)</string>
     <string name="corrente">Corrente (A)</string>
     <string name="potencia_ativa">Potência Ativa (kW/cv)</string>
     <string name="potencia_reativa">Potência Reativa (kVAr)</string>
     <string name="fator_potencia">Fator de Potência</string>
     <string name="rotacao">Rotação (rpm)</string>
-    <string name="fabricante">Fabricante</string>
-    <string name="motor">MOTOR</string>
+    <string name="fabricante_motor">Fabricante</string>
+
+    <!-- BOMBA -->
     <string name="bomba">BOMBA</string>
+    <string name="vazao">Vazão (m³/h)</string>
+    <string name="altura_monometrica">Altura Monométrica (mca)</string>
+    <string name="fabricante_bomba">Fabricante</string>
+
+
+    <!-- TITLES -->
+    <string name="title_placa">PLACA</string>
+    <string name="title_motor">MOTOR</string>
+    <string name="title_sistema">SISTEMA</string>
+    <string name="title_fotos">FOTOS</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->
