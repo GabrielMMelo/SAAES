@@ -14,7 +14,7 @@ import android.widget.TextView;
  */
 public class DadosMedicaoFragment extends Fragment {
 
-    private Dados dadosMedicao;
+    private DadosMotorBomba dadosMedicao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -1,6 +1,6 @@
 package gabrielmmelo.com.saaes;
 
-public class Dados {
+public class DadosMotorBomba {
     private float tensao;
     private float corrente;
     private float potencia_ativa;
@@ -13,7 +13,7 @@ public class Dados {
     private String fabricante_bomba;
 
 
-    public Dados() {
+    public DadosMotorBomba() {
     }
 
     public void setVazao(float vazao) {
