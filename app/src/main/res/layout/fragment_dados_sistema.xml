@@ -9,7 +9,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/tipo_partida"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/activity_vertical_margin"
@@ -25,17 +25,20 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/spinner_tipo_partida"
         android:text="@string/banco_capacitores"
-        android:textStyle="bold"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="30sp"/>
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/spinner_banco_capacitores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="158dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
