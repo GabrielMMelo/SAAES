@@ -33,6 +33,7 @@
             android:hint="@string/tensao"
             />
         <EditText
+            android:id="@+id/corrente"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
@@ -40,6 +41,7 @@
             android:hint="@string/corrente"
             />
         <EditText
+            android:id="@+id/potencia_ativa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
@@ -47,24 +49,28 @@
             android:hint="@string/potencia_ativa"
             />
         <EditText
+            android:id="@+id/potencia_reativa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
             android:singleLine="true"
             android:hint="@string/potencia_reativa" />
         <EditText
+            android:id="@+id/fator_potencia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
             android:singleLine="true"
             android:hint="@string/fator_potencia" />
         <EditText
+            android:id="@+id/rotacao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
             android:singleLine="true"
             android:hint="@string/rotacao" />
         <EditText
+            android:id="@+id/fabricante_motor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
@@ -81,18 +87,21 @@
             android:textStyle="bold"/>
 
         <EditText
+            android:id="@+id/vazao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
             android:singleLine="true"
             android:hint="@string/vazao" />
         <EditText
+            android:id="@+id/altura_monometrica"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
             android:singleLine="true"
             android:hint="@string/altura_monometrica"/>
         <EditText
+            android:id="@+id/fabricante_bomba"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="text"
@@ -101,14 +110,6 @@
 
 
     </LinearLayout>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="16dp"
-        android:src="@android:drawable/ic_media_next"
-        android:tint="@color/colorLight"/>
+
 
 </RelativeLayout>

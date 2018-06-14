@@ -6,9 +6,108 @@
     tools:context=".DadosMedicaoFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <!-- MOTOR -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:elegantTextHeight="true"
+            android:gravity="center_horizontal"
+            android:text="@string/motor"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/tensao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/tensao"
+            />
+        <EditText
+            android:id="@+id/corrente"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/corrente"
+            />
+        <EditText
+            android:id="@+id/potencia_ativa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/potencia_ativa"
+            />
+        <EditText
+            android:id="@+id/potencia_reativa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/potencia_reativa" />
+        <EditText
+            android:id="@+id/fator_potencia"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/fator_potencia" />
+        <EditText
+            android:id="@+id/rotacao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/rotacao" />
+        <EditText
+            android:id="@+id/fabricante_motor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/fabricante_motor" />
+
+        <!-- BOMBA -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:text="@string/bomba"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/vazao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/vazao" />
+        <EditText
+            android:id="@+id/altura_monometrica"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/altura_monometrica"/>
+        <EditText
+            android:id="@+id/fabricante_bomba"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="text"
+            android:singleLine="true"
+            android:hint="@string/fabricante_bomba" />
+    </LinearLayout>
+
 
 </FrameLayout>
