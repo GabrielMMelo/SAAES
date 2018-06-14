@@ -25,6 +25,7 @@ public class Form1Activity extends DebugActivity {
     private FragmentManager fm = getSupportFragmentManager();
     private DadosPlacaFragment dadosPlacaFragment = new DadosPlacaFragment();
     private DadosMedicaoFragment dadosMedicaoFragment = new DadosMedicaoFragment();
+    private DadosSistemaFragment dadosSistemaFragment = new DadosSistemaFragment();
     private FloatingActionButton fabNext;
     private FloatingActionButton fabPrevious;
 
@@ -39,6 +40,8 @@ public class Form1Activity extends DebugActivity {
             ft.add(R.id.layoutDadosPlacaFragment, dadosPlacaFragment, "DadosPlacaFragment");
             ft.add(R.id.layoutDadosMedicaoFragment, dadosMedicaoFragment, "DadosMedicaoFragment");
             ft.detach(dadosMedicaoFragment);
+            ft.add(R.id.layoutDadosSistemaFragment, dadosSistemaFragment, "DadosSistemaFragment");
+            ft.detach(dadosSistemaFragment);
             ft.commit();
             fragment = 1;
 
@@ -50,15 +53,6 @@ public class Form1Activity extends DebugActivity {
         fabPrevious = (FloatingActionButton) findViewById(R.id.fabPrevious);
         fabPrevious.setOnClickListener(onClickFabPrevious());
         fabPrevious.hide();
-
-        if(fragment != 4) {
-
-        }
-
-        if(fragment != 1) {
-
-        }
-
     }
 
     /*
@@ -81,9 +75,9 @@ public class Form1Activity extends DebugActivity {
                     case 2:
                         FragmentTransaction ft2 = fm.beginTransaction();
                         ft2.detach(dadosMedicaoFragment);
-                        ft2.attach(dadosPlacaFragment);
+                        ft2.attach(dadosSistemaFragment);
                         ft2.commit();
-                        fragment = 1;
+                        fragment += 1;
                     break;
 
                     case 3:
@@ -115,10 +109,10 @@ public class Form1Activity extends DebugActivity {
 
                     case 3:
                         FragmentTransaction ft3 = fm.beginTransaction();
-                        ft3.detach(dadosMedicaoFragment);
-                        ft3.attach(dadosPlacaFragment);
+                        ft3.detach(dadosSistemaFragment);
+                        ft3.attach(dadosMedicaoFragment);
                         ft3.commit();
-                        fragment += 1;
+                        fragment -= 1;
                         break;
 
                     case 4:

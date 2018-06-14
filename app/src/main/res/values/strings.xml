@@ -22,6 +22,9 @@
     <string name="altura_monometrica">Altura Monométrica (mca)</string>
     <string name="fabricante_bomba">Fabricante</string>
 
+    <!-- SISTEMA -->
+    <string name="tipo_partida">Tipo de Partida</string>
+    <string name="banco_capacitores">Banco de Capacitores</string>
 
     <!-- TITLES -->
     <string name="title_placa">PLACA</string>
