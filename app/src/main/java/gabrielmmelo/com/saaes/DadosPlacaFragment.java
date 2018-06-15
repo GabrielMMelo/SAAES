@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class DadosPlacaFragment extends Fragment {
 
-    private DadosMotorBomba dadosPlaca;
+    public DadosMotorBomba dadosPlaca;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

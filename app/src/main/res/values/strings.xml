@@ -29,8 +29,11 @@
     <!-- TITLES -->
     <string name="title_placa">PLACA</string>
     <string name="title_motor">MOTOR</string>
+    <string name="title_motor_bomba">MOTOR/BOMBA</string>
+    <string name="title_bomba">/BOMBA</string>
     <string name="title_sistema">SISTEMA</string>
     <string name="title_fotos">FOTOS</string>
+    <string name="title_conjunto">CONJUNTO</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

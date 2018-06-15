@@ -34,6 +34,8 @@ public class DadosSistemaFragment extends Fragment {
         String[] items_banco_capactiores = new String[]{"Instalado na placa", "Não instalado"};
         ArrayAdapter<String> adapter_banco_capacitores = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items_banco_capactiores);
         banco_capacitores.setAdapter(adapter_banco_capacitores);
+
+        getActivity().setTitle("SISTEMA");
         return view;
     }
 
