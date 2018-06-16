@@ -1,6 +1,7 @@
 package gabrielmmelo.com.saaes;
 
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -13,9 +14,10 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
-public class FormActivity extends DebugActivity {
+public class FormActivity extends DebugActivity implements DadosPlacaFragment.ActivityCommunicator, DadosMedicaoFragment.ActivityCommunicator {
 
     private int fragment;
     private FragmentManager fm = getSupportFragmentManager();
@@ -27,10 +29,23 @@ public class FormActivity extends DebugActivity {
     private FloatingActionButton fabPrevious;
     private FloatingActionButton fabPicture;
 
+
+    @Override
+    public void passDadosMedicaoToActivity(JSONObject json) {
+        Log.i("TESTE", json.toString());
+    }
+
+    @Override
+    public void passDadosPlacaToActivity(JSONObject json) {
+
+        Log.i("TESTE", json.toString());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+
         if (savedInstanceState == null){
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(R.id.layoutDadosPlacaFragment, dadosPlacaFragment, "DadosPlacaFragment");
@@ -47,15 +62,13 @@ public class FormActivity extends DebugActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         fabNext = (FloatingActionButton) findViewById(R.id.fabNext);
         fabNext.setOnClickListener(onClickFabNext());
+
         fabPrevious = (FloatingActionButton) findViewById(R.id.fabPrevious);
         fabPrevious.setOnClickListener(onClickFabPrevious());
         fabPrevious.hide();
+
         fabPicture = (FloatingActionButton) findViewById(R.id.fabPicture);
-        try {
-            fabPicture.setOnClickListener(onClickFabPicture());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        fabPicture.setOnClickListener(onClickFabPicture());
         fabPicture.hide();
     }
 
@@ -138,7 +151,7 @@ public class FormActivity extends DebugActivity {
         };
     }
 
-    private View.OnClickListener onClickFabPicture() throws org.json.JSONException {
+    private View.OnClickListener onClickFabPicture(){
         return new FloatingActionButton.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,36 +172,6 @@ public class FormActivity extends DebugActivity {
                 params.putFloat("medicao_fator_potencia", 123);
                 params.putFloat("medicao_rotacao", 123);
                 params.putString("medicao_fabricante", "OI");
-                /*
-                    trying to convert json object to bundle
-
-                try {
-                    JSONObject json = new JSONObject();
-                    JSONObject placa = new JSONObject();
-                    JSONObject medicao = new JSONObject();
-                    //JSONObject sistema = new JSONObject();
-                    placa.put("tensao", "emil");
-                    placa.put("corrente", "emil111");
-                    placa.put("potencia_ativa", "111");
-                    placa.put("potencia_ativa", "111");
-                    placa.put("potencia_reativa", "111");
-                    placa.put("fator_potencia", "111");
-                    placa.put("rotacao", "111");
-                    placa.put("fabricante", "111");
-                    medicao.put("tensao", "emil");
-                    medicao.put("corrente", "emil111");
-                    medicao.put("potencia_ativa", "111");
-                    medicao.put("potencia_ativa", "111");
-                    medicao.put("potencia_reativa", "111");
-                    medicao.put("fator_potencia", "111");
-                    medicao.put("rotacao", "111");
-                    medicao.put("fabricante", "111");
-                    json.put("placa", placa);
-                    json.put("placa", medicao);
-                    // json.put("placa",sistema);
-                    params.putBundle("data", jsonToBundle(json));
-                } catch (JSONException ignored){}
-                */
                 intent.putExtras(params);
                 startActivity(intent);
                 finish();
@@ -216,4 +199,5 @@ public class FormActivity extends DebugActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

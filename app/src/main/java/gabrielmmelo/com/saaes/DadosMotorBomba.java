@@ -14,6 +14,11 @@ public class DadosMotorBomba {
 
 
     public DadosMotorBomba() {
+        tensao = 0;
+        corrente = 0;
+        potencia_ativa = 0;
+        potencia_reativa = 0;
+        fator_potencia = 0;
     }
 
     public void setVazao(float vazao) {

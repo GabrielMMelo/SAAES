@@ -1,6 +1,7 @@
 package gabrielmmelo.com.saaes;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,12 +10,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class DadosMedicaoFragment extends Fragment {
 
+    public Context context;
     private DadosMotorBomba dadosMedicao;
+    private ActivityCommunicator activityCommunicator;
+
+    public DadosMedicaoFragment(){
+    }
+
+    public static DadosMedicaoFragment newInstance(){
+        return new DadosMedicaoFragment();
+    }
+
+    public interface ActivityCommunicator{
+        public void passDadosMedicaoToActivity(JSONObject json);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = getActivity();
+        activityCommunicator = (ActivityCommunicator)this.context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,7 +43,7 @@ public class DadosMedicaoFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dados_medicao, container, false);
 
-        if(savedInstanceState != null){
+        /*if(savedInstanceState != null){
             this.dadosMedicao.setTensao(savedInstanceState.getFloat("tensao"));
             TextView tensao = (TextView) view.findViewById(R.id.tensao);
             tensao.setText(Float.toString(this.dadosMedicao.getTensao()));
@@ -64,7 +85,7 @@ public class DadosMedicaoFragment extends Fragment {
             fabricante_bomba.setText(this.dadosMedicao.getFabricante_bomba());
 
         }
-
+        */
         getActivity().setTitle("MEDIÇÕES");
         return view;
     }
@@ -84,4 +105,27 @@ public class DadosMedicaoFragment extends Fragment {
         outState.putString("fabricante_bomba", this.dadosMedicao.getFabricante_bomba());
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        try {
+            JSONObject placa = new JSONObject();
+            placa.put("tensao", ((TextView) getView().findViewById(R.id.tensao) == null) ? "null" : ((TextView) getView().findViewById(R.id.tensao)).getText() );
+            placa.put("corrente", ((TextView) getView().findViewById(R.id.corrente) == null) ? "null" : ((TextView) getView().findViewById(R.id.corrente)).getText() );
+            placa.put("potencia_ativa", ((TextView) getView().findViewById(R.id.potencia_ativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_ativa)).getText() );
+            placa.put("potencia_reativa", ((TextView) getView().findViewById(R.id.potencia_reativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_reativa)).getText() );
+            placa.put("fator_potencia", ((TextView) getView().findViewById(R.id.fator_potencia) == null) ? "null" : ((TextView) getView().findViewById(R.id.fator_potencia)).getText() );
+            placa.put("rotacao", ((TextView) getView().findViewById(R.id.rotacao) == null) ? "null" : ((TextView) getView().findViewById(R.id.rotacao)).getText() );
+            placa.put("fabricante_motor", ((TextView) getView().findViewById(R.id.fabricante_motor) == null) ? "null" : ((TextView) getView().findViewById(R.id.fabricante_motor)).getText() );
+            placa.put("altura_monometrica", ((TextView) getView().findViewById(R.id.altura_monometrica) == null) ? "null" : ((TextView) getView().findViewById(R.id.altura_monometrica)).getText() );
+            placa.put("vazao", ((TextView) getView().findViewById(R.id.vazao) == null) ? "null" : ((TextView) getView().findViewById(R.id.vazao)).getText() );
+            placa.put("fabricante_bomba", ((TextView) getView().findViewById(R.id.fabricante_bomba) == null) ? "null" : ((TextView) getView().findViewById(R.id.fabricante_bomba)).getText() );
+
+          this.activityCommunicator.passDadosMedicaoToActivity(placa);
+        } catch (JSONException json_exception){
+
+        }
+
+    }
 }
