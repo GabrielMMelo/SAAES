@@ -20,6 +20,8 @@ import java.util.Iterator;
 public class FormActivity extends DebugActivity implements DadosPlacaFragment.ActivityCommunicator, DadosMedicaoFragment.ActivityCommunicator {
 
     private int fragment;
+    private JSONObject dadosPlaca;
+    private JSONObject dadosMedicao;
     private FragmentManager fm = getSupportFragmentManager();
     private DadosPlacaFragment dadosPlacaFragment = new DadosPlacaFragment();
     private DadosMedicaoFragment dadosMedicaoFragment = new DadosMedicaoFragment();
@@ -32,13 +34,12 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
 
     @Override
     public void passDadosMedicaoToActivity(JSONObject json) {
-        Log.i("TESTE", json.toString());
+        this.dadosMedicao = json;
     }
 
     @Override
     public void passDadosPlacaToActivity(JSONObject json) {
-
-        Log.i("TESTE", json.toString());
+        this.dadosPlaca = json;
     }
 
     @Override
@@ -157,21 +158,8 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), FotosActivity.class);
                 Bundle params = new Bundle();
-                params.putFloat("placa_tensao",123);
-                params.putFloat("placa_corrente", 123);
-                params.putFloat("placa_potencia_ativa", 123);
-                params.putFloat("placa_potencia_reativa", 123);
-                params.putFloat("placa_fator_potencia", 123);
-                params.putFloat("placa_rotacao", 123);
-                params.putString("placa_fabricante", "OI");
-
-                params.putFloat("medicao_tensao", 123);
-                params.putFloat("medicao_corrente", 123);
-                params.putFloat("medicao_potencia_ativa", 123);
-                params.putFloat("medicao_potencia_reativa", 123);
-                params.putFloat("medicao_fator_potencia", 123);
-                params.putFloat("medicao_rotacao", 123);
-                params.putString("medicao_fabricante", "OI");
+                params.putString("placa",dadosPlaca.toString());
+                params.putString("medicao",dadosMedicao.toString());
                 intent.putExtras(params);
                 startActivity(intent);
                 finish();

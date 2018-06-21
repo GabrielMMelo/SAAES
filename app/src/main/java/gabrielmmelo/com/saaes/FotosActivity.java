@@ -30,31 +30,8 @@ public class FotosActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle args = intent.getExtras();
 
-        Log.i("TESTE", Float.toString(args.getFloat("placa_tensao")));
-
-        /*
-            trying to convert JSON object to bundle
-
-        for (String key : args.keySet()) {
-            Object value = args.get(key);
-            Log.d("TESTE", String.format("%s %s (%s)", key,
-                    value.toString(), value.getClass().getName()));
-            for (Field field : value.getClass().getDeclaredFields()) {
-                field.setAccessible(true); // You might want to set modifier to public first.
-                try {
-                    Object value2 = field.get(value);
-
-                if (value2 != null) {
-                    Log.d("TESTE", String.format("%s = %s", field.getName(),
-                            value2));
-                }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }
-        */
+        Log.i("TESTE", args.getString("placa"));
+        Log.i("TESTE", args.getString("medicao"));
 
     }
 
