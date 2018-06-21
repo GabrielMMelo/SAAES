@@ -26,7 +26,7 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
     private DadosPlacaFragment dadosPlacaFragment = new DadosPlacaFragment();
     private DadosMedicaoFragment dadosMedicaoFragment = new DadosMedicaoFragment();
     private DadosSistemaFragment dadosSistemaFragment = new DadosSistemaFragment();
-    private FotosFragment fotosFragment = new FotosFragment();
+   // private FotosFragment fotosFragment = new FotosFragment();
     private FloatingActionButton fabNext;
     private FloatingActionButton fabPrevious;
     private FloatingActionButton fabPicture;
@@ -50,8 +50,10 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
     }
 
     /**
-     *
-     * @param savedInstanceState
+     * Called when the activity is starting.
+     * @param savedInstanceState If the activity is being re-initialized after
+     *     previously being shut down then this Bundle contains the data it most
+     *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,8 +70,8 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
             ft.detach(dadosMedicaoFragment);
             ft.add(R.id.layoutDadosSistemaFragment, dadosSistemaFragment, "DadosSistemaFragment");
             ft.detach(dadosSistemaFragment);
-            ft.add(R.id.layoutFotosFragment, fotosFragment, "FotosFragment");
-            ft.detach(fotosFragment);
+          //  ft.add(R.id.layoutFotosFragment, fotosFragment, "FotosFragment");
+          //  ft.detach(fotosFragment);
             ft.commit();
             fragment = 1;
         }

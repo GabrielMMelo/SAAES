@@ -2,6 +2,7 @@ package gabrielmmelo.com.saaes;
 
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -11,6 +12,7 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ public class FotosFragment extends Fragment {
     private ImageView foto_conjunto;
     private ImageView foto_motor_bomba;
     private int foto_selecionada;
+    private ActivityCommunicator activityCommunicator;
 
     /**
      * Constructor needed according to Android documentation
@@ -34,6 +37,24 @@ public class FotosFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     *
+     */
+    public interface ActivityCommunicator{
+        public void passPicturesToActivity(int id, Bitmap bitmap);
+    }
+
+
+    /**
+     * Get context to send data when fragment is attached
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.e("TESTE", "QUE PORRA EH ESSA?");
+        this.activityCommunicator = (ActivityCommunicator) getContext();
+    }
     /**
      *
      * @param inflater
@@ -149,14 +170,17 @@ public class FotosFragment extends Fragment {
                 Bitmap bitmap = (Bitmap) bundle.get("data");
                 switch (foto_selecionada){
                     case 1:
+                        this.activityCommunicator.passPicturesToActivity(1, bitmap);
                         foto_conjunto.setImageBitmap(bitmap);
                     break;
 
                     case 2:
+                        this.activityCommunicator.passPicturesToActivity(2, bitmap);
                         foto_motor_bomba.setImageBitmap(bitmap);
                     break;
 
                     case 3:
+                        this.activityCommunicator.passPicturesToActivity(3, bitmap);
                         foto_placa.setImageBitmap(bitmap);
                     break;
                 }
