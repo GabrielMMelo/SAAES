@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
 
+/**
+ * Class that override all activities lifecycle methods to print some debug on <strong>Logcat</strong>
+ */
 public class DebugActivity extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {

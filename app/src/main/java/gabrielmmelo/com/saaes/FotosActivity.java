@@ -16,6 +16,10 @@ public class FotosActivity extends AppCompatActivity {
     private FragmentManager fm = getSupportFragmentManager();
     private FotosFragment fotosFragment = new FotosFragment();
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,11 @@ public class FotosActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * 
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();

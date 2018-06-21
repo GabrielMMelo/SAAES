@@ -21,25 +21,26 @@ public class DadosPlacaFragment extends Fragment {
     private DadosMotorBomba dadosPlaca = new DadosMotorBomba();
     private ActivityCommunicator activityCommunicator;
 
-    /*
-        Constructor needed according to Android documentation
-    */
+    /**
+     * Constructor needed according to Android documentation
+     */
     public DadosPlacaFragment(){}
 
     public static DadosPlacaFragment newInstance(){
         return new DadosPlacaFragment();
     }
 
-    /*
-        Communication interface to send data do activity
-    */
+    /**
+     * Communication interface to send data do activity
+     */
     public interface ActivityCommunicator{
         public void passDadosPlacaToActivity(JSONObject json);
     }
 
-    /*
-        Get context to send data when fragment is attached
-    */
+    /**
+     * Get context to send data when fragment is attached
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -47,6 +48,13 @@ public class DadosPlacaFragment extends Fragment {
         activityCommunicator = (ActivityCommunicator)this.context;
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,9 +65,9 @@ public class DadosPlacaFragment extends Fragment {
         return view;
     }
 
-    /*
-        Serialize and send data to Activity when the fragment is switched
-    */
+    /**
+     * Serialize and send data to Activity when the fragment is switched
+     */
     @Override
     public void onPause() {
         super.onPause();
@@ -82,9 +90,10 @@ public class DadosPlacaFragment extends Fragment {
         }
     }
 
-    /*
-        It wont be called because onSaveInstaceState is only called when ACTIVITY it calls onSaveInstanceState (when the OS needs to destroy activity to clean space)
-    */
+    /**
+     * It <strong>wont</strong> be called because onSaveInstaceState is only called when ACTIVITY it calls onSaveInstanceState (when the OS needs to destroy activity to clean space)
+     * @param outState
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

@@ -19,6 +19,21 @@ public class DadosSistemaFragment extends Fragment {
 
     private Spinner tipo_partida;
     private Spinner banco_capacitores;
+
+    /**
+     * Constructor needed according to Android documentation
+     */
+    public DadosSistemaFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

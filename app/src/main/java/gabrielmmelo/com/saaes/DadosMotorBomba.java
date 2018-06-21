@@ -12,7 +12,9 @@ public class DadosMotorBomba {
     private float altura_monometrica;
     private String fabricante_bomba;
 
-
+    /**
+     * Constructor that initialize all attributes to 0
+     */
     public DadosMotorBomba() {
         tensao = 0;
         corrente = 0;

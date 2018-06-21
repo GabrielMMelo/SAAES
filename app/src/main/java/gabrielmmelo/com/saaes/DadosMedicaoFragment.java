@@ -19,9 +19,9 @@ public class DadosMedicaoFragment extends Fragment {
     private DadosMotorBomba dadosMedicao;
     private ActivityCommunicator activityCommunicator;
 
-    /*
-        Constructor needed according to Android documentation
-    */
+    /**
+     * Constructor needed according to Android documentation
+     */
     public DadosMedicaoFragment(){
     }
 
@@ -29,16 +29,17 @@ public class DadosMedicaoFragment extends Fragment {
         return new DadosMedicaoFragment();
     }
 
-    /*
-        Communication interface to send data do activity
-    */
+    /**
+     * Communication interface to send data do activity
+     */
     public interface ActivityCommunicator{
         public void passDadosMedicaoToActivity(JSONObject json);
     }
 
-    /*
-        Get context to send data when fragment is attached
-    */
+    /**
+     * Get context to send data when fragment is attached
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -46,6 +47,13 @@ public class DadosMedicaoFragment extends Fragment {
         activityCommunicator = (ActivityCommunicator)this.context;
     }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,9 +63,9 @@ public class DadosMedicaoFragment extends Fragment {
         return view;
     }
 
-    /*
-        Serialize and send data to Activity when the fragment is switched
-    */
+    /**
+     * Serialize and send data to Activity when the fragment is switched
+     */
     @Override
     public void onPause() {
         super.onPause();

@@ -31,22 +31,36 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
     private FloatingActionButton fabPrevious;
     private FloatingActionButton fabPicture;
 
-
+    /**
+     * ActivityCommunicator interface method implementation that "catch" sent data from DadosMedicao fragment
+     * @param json
+     */
     @Override
     public void passDadosMedicaoToActivity(JSONObject json) {
         this.dadosMedicao = json;
     }
 
+    /**
+     * ActivityCommunicator interface method implementation that "catch" sent data from DadosPlaca fragment
+     * @param json
+     */
     @Override
     public void passDadosPlacaToActivity(JSONObject json) {
         this.dadosPlaca = json;
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
+        /*
+         * FIRST CREATE ACTIVITY TIME
+         */
         if (savedInstanceState == null){
             FragmentTransaction ft = fm.beginTransaction();
             ft.add(R.id.layoutDadosPlacaFragment, dadosPlacaFragment, "DadosPlacaFragment");
@@ -60,14 +74,19 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
             fragment = 1;
         }
 
+        // ENABLE TOP LEFT RETURN HOME ACTION BUTTON
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // CREATE FAB TO SWITCH TO NEXT FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabNext = (FloatingActionButton) findViewById(R.id.fabNext);
         fabNext.setOnClickListener(onClickFabNext());
 
+        // CREATE FAB TO SWITCH TO PREVIOUS FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabPrevious = (FloatingActionButton) findViewById(R.id.fabPrevious);
         fabPrevious.setOnClickListener(onClickFabPrevious());
         fabPrevious.hide();
 
+        // CREATE FAB TO SUBMIT ALL FORM DATA TO NEXT ACTIVITY & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabPicture = (FloatingActionButton) findViewById(R.id.fabPicture);
         fabPicture.setOnClickListener(onClickFabPicture());
         fabPicture.hide();
@@ -76,6 +95,11 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
     /*
             Criação de método próprio para tratar o evento de click no fab to next form view.
          */
+
+    /**
+     * TREATMENT METHOD THAT PROPERLY ATTACH/DETACH FRAGMENT AND ALSO HIDE/SHOW FABs ON CLICK NEXT
+     * @return
+     */
     private View.OnClickListener onClickFabNext(){
         return new FloatingActionButton.OnClickListener(){
             @Override
@@ -114,6 +138,10 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
         };
     }
 
+    /**
+     * TREATMENT METHOD THAT PROPERLY ATTACH/DETACH FRAGMENT AND ALSO HIDE/SHOW FABs ON CLICK PREVIOUS
+     * @return
+     */
     private View.OnClickListener onClickFabPrevious(){
         return new FloatingActionButton.OnClickListener(){
             @Override
@@ -152,6 +180,10 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
         };
     }
 
+    /**
+     * TREATMENT METHOD THAT PROPERLY SEND ALL FRAGMENT DATA TO ACTIVITY ON CLICK PICTURE
+     * @return
+     */
     private View.OnClickListener onClickFabPicture(){
         return new FloatingActionButton.OnClickListener() {
             @Override
@@ -167,17 +199,11 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
         };
     }
 
-    private static Bundle jsonToBundle(JSONObject jsonObject) throws JSONException {
-        Bundle bundle = new Bundle();
-        Iterator iter = jsonObject.keys();
-        while(iter.hasNext()){
-            String key = (String)iter.next();
-            String value = jsonObject.getString(key);
-            bundle.putString(key,value);
-        }
-        return bundle;
-    }
-
+    /**
+     * TREAT ON CLICK HOME RETURN ACTION BUTTON EVENT
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int i = item.getItemId();

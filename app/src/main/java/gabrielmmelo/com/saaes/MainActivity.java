@@ -11,14 +11,12 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-
-    /*
-    TAG para debug no LogCat usando os métodos de Log -> (v,d,i,w,e)
-    private static final String TAG = "livro";
-     */
-
     private static String stringTeste;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*
-            Criação de método próprio para tratar o evento. O método serve apenas para o btnStart.
-         */
+    /**
+     * OWN METHOD TO TREAT ON CLICK BUTTON EVENT
+     * @return
+     */
     private View.OnClickListener onClickBtnStart(){
         return new Button.OnClickListener(){
             @Override
@@ -42,6 +41,10 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * AUX METHOD TO GET CONTEXT OF ACTIVITY
+     * @return actual context
+     */
     private Context getContext(){
         return this;
     }

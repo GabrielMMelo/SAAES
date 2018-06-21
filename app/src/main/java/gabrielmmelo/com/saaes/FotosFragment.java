@@ -22,18 +22,25 @@ import android.widget.ImageView;
  * A simple {@link Fragment} subclass.
  */
 public class FotosFragment extends Fragment {
-
-
-    public FotosFragment() {
-        // Required empty public constructor
-    }
-
     private ImageView foto_placa;
     private ImageView foto_conjunto;
     private ImageView foto_motor_bomba;
     private int foto_selecionada;
 
+    /**
+     * Constructor needed according to Android documentation
+     */
+    public FotosFragment() {
+        // Required empty public constructor
+    }
 
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,6 +66,10 @@ public class FotosFragment extends Fragment {
         return view;
     }
 
+    /**
+     *
+     * @return
+     */
     private View.OnClickListener OnClickBtnConjuntoListener(){
         return new ImageButton.OnClickListener() {
             @Override
@@ -78,6 +89,10 @@ public class FotosFragment extends Fragment {
         };
     }
 
+    /**
+     *
+     * @return
+     */
     private View.OnClickListener OnClickBtnMotorBombaListener(){
         return new ImageButton.OnClickListener() {
             @Override
@@ -97,6 +112,10 @@ public class FotosFragment extends Fragment {
         };
     }
 
+    /**
+     *
+     * @return
+     */
     private View.OnClickListener OnClickBtnPlacaListener(){
         return new ImageButton.OnClickListener() {
             @Override
@@ -114,6 +133,13 @@ public class FotosFragment extends Fragment {
             }
         };
     }
+
+    /**
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
