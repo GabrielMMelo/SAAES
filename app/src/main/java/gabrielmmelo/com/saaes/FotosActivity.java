@@ -77,6 +77,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         Intent intent = getIntent();
         Bundle args = intent.getExtras();
 
+        // Receive data by bundle from previous activity
         this.dadosPlaca = args.getString("placa");
         this.dadosMedicao = args.getString("medicao");
 
@@ -90,20 +91,24 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         return new FloatingActionButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String leitura = readFromFile("placa.txt");
-                Log.i("TESTE", "leitura antes: " + leitura);
-                if(leitura == " "){
-                    writeToFile("placa.txt","sep=,");
+                String leituraPlaca = readFromFile("placa.csv");
+                String leituraMedicao = readFromFile("medicao.csv");
+                if(leituraPlaca.isEmpty()){
+                    writeToFile("placa.csv","sep=,\nTensao, Corrente, Potencia ativa, Potencia reativa, Fator de potencia, Rotacao, Fabricante do motor, Altura monometrica, Vazao, Fabricante da bomba");
+                    Log.i("TESTE", "Empty placa file");
                 }
-                else {
-                    prepararEscrita("placa.txt", dadosPlaca);
-                    Log.i("TESTE", readFromFile("placa.txt"));
+                if(leituraMedicao.isEmpty()){
+                    writeToFile("medicao.csv","sep=,\nTensao, Corrente, Potencia ativa, Potencia reativa, Fator de potencia, Rotacao, Fabricante do motor, Altura monometrica, Vazao, Fabricante da bomba");
+                    Log.i("TESTE", "Empty medicao file");
                 }
+                prepararEscrita("placa.csv", dadosPlaca);
+                prepararEscrita("medicao.csv", dadosMedicao);
+                Log.i("TESTE", readFromFile("placa.csv"));
+                Log.i("TESTE", readFromFile("medicao.csv"));
 
-       /*         writeToFile("medicao.txt", dadosMedicao);
-                Log.i("TESTE", readFromFile("medicao.txt"));
+
                 saveImage(conjuntoPicture);
-                saveImage(motorBombaPicture);
+        /*      saveImage(motorBombaPicture);
                 saveImage(placaPicture);
 
        */
