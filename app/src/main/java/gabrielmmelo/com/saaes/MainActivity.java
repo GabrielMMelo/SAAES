@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.w("teste", "CRIOU");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_tablet);
         Button btnStart = (Button) findViewById(R.id.btnStart);
         btnStart.setOnClickListener(onClickBtnStart());
 

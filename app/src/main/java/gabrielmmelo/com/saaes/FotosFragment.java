@@ -156,7 +156,9 @@ public class FotosFragment extends Fragment {
     }
 
     /**
+     *  Receive activity result
      *
+     *  Send to interface method a picture id and bitmap
      * @param requestCode
      * @param resultCode
      * @param data

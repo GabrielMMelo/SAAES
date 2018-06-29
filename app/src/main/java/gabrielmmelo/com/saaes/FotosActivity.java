@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -114,6 +115,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
 
 
                 saveImage(conjuntoPicture);
+                Toast.makeText(FotosActivity.this, "Dados salvos no cartão SD!", Toast.LENGTH_SHORT).show();
         /*      saveImage(motorBombaPicture);
                 saveImage(placaPicture);
 
