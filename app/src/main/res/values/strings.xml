@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">SAAES</string>
+    <string name="app_name">Conservação de Energia</string>
     <string name="hello_world">Hello World!</string>
-    <string name="main_title">Medições de Consumo</string>
+    <string name="main_title">Conservação de Energia</string>
     <string name="lorem_ipsum">Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.</string>
     <string name="Começar">Começar</string>
     <string name="testLabel">Label</string>
@@ -25,6 +25,7 @@
     <!-- SISTEMA -->
     <string name="tipo_partida">Tipo de Partida</string>
     <string name="banco_capacitores">Banco de Capacitores</string>
+    <string name="sistema_supervisionado">Sistema Supervisionado</string>
 
     <!-- TITLES -->
     <string name="title_placa">PLACA</string>
