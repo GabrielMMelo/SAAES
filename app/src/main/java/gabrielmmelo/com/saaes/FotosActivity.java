@@ -46,6 +46,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private Bitmap conjuntoPicture;
     private Bitmap motorBombaPicture;
     private Bitmap placaPicture;
+    private Bitmap bancoCapacitoresPicture;
+    private Bitmap painelPicture;
 
     @Override
     public void passPicturesToActivity(int id, Bitmap bitmap) {
@@ -60,6 +62,14 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
 
             case 3:
                 this.placaPicture = bitmap;
+            break;
+
+            case 4:
+                this.bancoCapacitoresPicture = bitmap;
+            break;
+
+            case 5:
+                this.painelPicture = bitmap;
             break;
         }
     }

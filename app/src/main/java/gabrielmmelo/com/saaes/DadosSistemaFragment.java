@@ -54,7 +54,7 @@ public class DadosSistemaFragment extends Fragment {
         sistema_supervisionado = view.findViewById(R.id.spinner_sistema_supervisionado);
         String[] items_sistema_supervisionado = new String[]{"Controlado", "Não controlado"};
         ArrayAdapter<String> adapter_sistema_supervisionado = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items_sistema_supervisionado);
-        banco_capacitores.setAdapter(adapter_sistema_supervisionado);
+        sistema_supervisionado.setAdapter(adapter_sistema_supervisionado);
 
         getActivity().setTitle("SISTEMA");
         return view;

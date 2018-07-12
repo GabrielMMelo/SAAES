@@ -35,6 +35,8 @@
     <string name="title_sistema">SISTEMA</string>
     <string name="title_fotos">FOTOS</string>
     <string name="title_conjunto">CONJUNTO</string>
+    <string name="title_painel">PAINEL</string>
+    <string name="title_banco_capacitores">BANCO DE CAPACITORES</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -27,6 +27,8 @@ public class FotosFragment extends Fragment {
     private ImageView foto_placa;
     private ImageView foto_conjunto;
     private ImageView foto_motor_bomba;
+    private ImageView foto_banco_capacitores;
+    private ImageView foto_painel;
     private int foto_selecionada;
     private ActivityCommunicator activityCommunicator;
 
@@ -41,7 +43,7 @@ public class FotosFragment extends Fragment {
      *
      */
     public interface ActivityCommunicator{
-        public void passPicturesToActivity(int id, Bitmap bitmap);
+        void passPicturesToActivity(int id, Bitmap bitmap);
     }
 
 
@@ -52,7 +54,6 @@ public class FotosFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        Log.e("TESTE", "QUE PORRA EH ESSA?");
         this.activityCommunicator = (ActivityCommunicator) getContext();
     }
     /**
@@ -81,7 +82,13 @@ public class FotosFragment extends Fragment {
         ImageButton btn_placa = (ImageButton) view.findViewById(R.id.btn_foto_placa);
         btn_placa.setOnClickListener(OnClickBtnPlacaListener());
 
+        foto_banco_capacitores = (ImageView) view.findViewById(R.id.foto_banco_capacitores);
+        ImageButton btn_banco_capacitores = (ImageButton) view.findViewById(R.id.btn_foto_banco_capacitores);
+        btn_banco_capacitores.setOnClickListener(OnClickBtnBancoCapacitoresListener());
 
+        foto_painel = (ImageView) view.findViewById(R.id.foto_painel);
+        ImageButton btn_painel = (ImageButton) view.findViewById(R.id.btn_foto_painel);
+        btn_painel.setOnClickListener(OnClickBtnPainelListener());
 
         getActivity().setTitle("FOTOS");
         return view;
@@ -155,6 +162,44 @@ public class FotosFragment extends Fragment {
         };
     }
 
+
+    private View.OnClickListener OnClickBtnBancoCapacitoresListener(){
+        return new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
+                }
+                else{
+                    foto_selecionada = 4;
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 0);
+                }
+
+            }
+        };
+    }
+
+
+    private View.OnClickListener OnClickBtnPainelListener(){
+        return new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_DENIED) {
+                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
+                }
+                else{
+                    foto_selecionada = 5;
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent, 0);
+                }
+
+            }
+        };
+    }
+
     /**
      *  Receive activity result
      *
@@ -184,6 +229,16 @@ public class FotosFragment extends Fragment {
                     case 3:
                         this.activityCommunicator.passPicturesToActivity(3, bitmap);
                         foto_placa.setImageBitmap(bitmap);
+                    break;
+
+                    case 4:
+                        this.activityCommunicator.passPicturesToActivity(4, bitmap);
+                        foto_banco_capacitores.setImageBitmap(bitmap);
+                    break;
+
+                    case 5:
+                        this.activityCommunicator.passPicturesToActivity(5, bitmap);
+                        foto_painel.setImageBitmap(bitmap);
                     break;
                 }
             }
