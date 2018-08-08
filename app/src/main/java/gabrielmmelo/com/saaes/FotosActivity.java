@@ -49,6 +49,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private Bitmap placaPicture;
     private Bitmap bancoCapacitoresPicture;
     private Bitmap painelPicture;
+    private Estacao estacao = new Estacao(getContext());
 
     @Override
     public void passPicturesToActivity(int id, Bitmap bitmap) {
@@ -112,57 +113,32 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         return new FloatingActionButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String leituraPlaca = readFromFile("placa.csv");
-                String leituraMedicao = readFromFile("medicao.csv");
-                if(leituraPlaca.isEmpty()){
-                    writeToFile("placa.csv","sep=,\nTensao, Corrente, Potencia ativa, Potencia reativa, Fator de potencia, Rotacao, Fabricante do motor, Altura monometrica, Vazao, Fabricante da bomba");
-                    Log.i("TESTE", "Empty placa file");
-                }
-                if(leituraMedicao.isEmpty()){
-                    writeToFile("medicao.csv","sep=,\nTensao, Corrente, Potencia ativa, Potencia reativa, Fator de potencia, Rotacao, Fabricante do motor, Altura monometrica, Vazao, Fabricante da bomba");
-                    Log.i("TESTE", "Empty medicao file");
-                }
-                prepararEscrita("placa.csv", dadosPlaca);
-                prepararEscrita("medicao.csv", dadosMedicao);
-                Log.i("TESTE", readFromFile("placa.csv"));
-                Log.i("TESTE", readFromFile("medicao.csv"));
+                prepararEscrita();
+                lerBanco();
 
 
                 saveImage(conjuntoPicture);
                 Toast.makeText(FotosActivity.this, "Dados salvos no cartão SD!", Toast.LENGTH_SHORT).show();
         /*      saveImage(motorBombaPicture);
                 saveImage(placaPicture);
-
        */
+                finish();
             }
         };
     }
 
-    /**
-     * Prepare .csv file parsing JSON and calling the writing method
-     * @param fileName
-     * @param dados
-     */
-    public void prepararEscrita(String fileName, String dados){
-        try {
-            JSONObject json = new JSONObject(dados);
-            writeToFile(fileName, "\n");
-            writeToFile(fileName, json.optString("tensao") + ",");
-            writeToFile(fileName, json.optString("corrente") + ",");
-            writeToFile(fileName, json.optString("potencia_ativa") + ",");
-            writeToFile(fileName, json.optString("potencia_reativa") + ",");
-            writeToFile(fileName, json.optString("fator_potencia") + ",");
-            writeToFile(fileName, json.optString("rotacao") + ",");
-            writeToFile(fileName, json.optString("fabricante_motor") + ",");
-            writeToFile(fileName, json.optString("altura_monometrica") + ",");
-            writeToFile(fileName, json.optString("vazao") + ",");
-            writeToFile(fileName, json.optString("fabricante_bomba"));
-            Log.i("TESTE", "Successfully created " + fileName);
-
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
+    public void lerBanco(){
+        Log.i("sql",estacao.findAll()+" REGISTROS NO BANCO");
     }
+
+    /**
+     * TODO: Fix method comment
+     * Prepare .csv file parsing JSON and calling the writing method
+     */
+    public void prepararEscrita(){
+        estacao.save(dadosPlaca, dadosMedicao, dadosLocal);
+    }
+
     /**
      *
      * @param fileName
