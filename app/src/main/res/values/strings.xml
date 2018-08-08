@@ -6,6 +6,11 @@
     <string name="Começar">Começar</string>
     <string name="testLabel">Label</string>
 
+    <!-- LOCAL -->
+
+    <string name="cidade">CIDADE</string>
+    <string name="local">LOCAL</string>
+
     <!-- MOTOR -->
     <string name="motor">MOTOR</string>
     <string name="tensao">Tensão (V)</string>

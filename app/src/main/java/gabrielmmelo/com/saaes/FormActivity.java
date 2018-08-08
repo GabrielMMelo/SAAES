@@ -17,12 +17,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class FormActivity extends DebugActivity implements DadosPlacaFragment.ActivityCommunicator, DadosMedicaoFragment.ActivityCommunicator {
+public class FormActivity extends DebugActivity implements DadosLocalFragment.ActivityCommunicator, DadosPlacaFragment.ActivityCommunicator, DadosMedicaoFragment.ActivityCommunicator {
 
     private int fragment;
     private JSONObject dadosPlaca;
     private JSONObject dadosMedicao;
+    private JSONObject dadosLocal;
     private FragmentManager fm = getSupportFragmentManager();
+    private DadosLocalFragment dadosLocalFragment = new DadosLocalFragment();
     private DadosPlacaFragment dadosPlacaFragment = new DadosPlacaFragment();
     private DadosMedicaoFragment dadosMedicaoFragment = new DadosMedicaoFragment();
     private DadosSistemaFragment dadosSistemaFragment = new DadosSistemaFragment();
@@ -50,6 +52,14 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
     }
 
     /**
+     * ActivityCommunicator interface method implementation that "catch" sent data from DadosPlaca fragment
+     * @param json
+     */
+    @Override
+    public void passDadosLocalToActivity(JSONObject json) {
+        this.dadosLocal = json;
+    }
+    /**
      * Called when the activity is starting.
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
@@ -65,7 +75,9 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
          */
         if (savedInstanceState == null){
             FragmentTransaction ft = fm.beginTransaction();
+            ft.add(R.id.layoutDadosLocalFragment, dadosLocalFragment, "DadosLocalFragment");
             ft.add(R.id.layoutDadosPlacaFragment, dadosPlacaFragment, "DadosPlacaFragment");
+            ft.detach(dadosPlacaFragment);
             ft.add(R.id.layoutDadosMedicaoFragment, dadosMedicaoFragment, "DadosMedicaoFragment");
             ft.detach(dadosMedicaoFragment);
             ft.add(R.id.layoutDadosSistemaFragment, dadosSistemaFragment, "DadosSistemaFragment");
@@ -109,18 +121,27 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
                 switch (fragment){
                     case 1:
                         FragmentTransaction ft1 = fm.beginTransaction();
-                        ft1.detach(dadosPlacaFragment);
-                        ft1.attach(dadosMedicaoFragment);
+                        ft1.detach(dadosLocalFragment);
+                        ft1.attach(dadosPlacaFragment);
                         ft1.commit();
+                        fabPrevious.show();
+                        fragment += 1;
+                        break;
+
+                    case 2:
+                        FragmentTransaction ft2 = fm.beginTransaction();
+                        ft2.detach(dadosPlacaFragment);
+                        ft2.attach(dadosMedicaoFragment);
+                        ft2.commit();
                         fabPrevious.show();
                         fragment += 1;
                     break;
 
-                    case 2:
-                        FragmentTransaction ft2 = fm.beginTransaction();
-                        ft2.detach(dadosMedicaoFragment);
-                        ft2.attach(dadosSistemaFragment);
-                        ft2.commit();
+                    case 3:
+                        FragmentTransaction ft3 = fm.beginTransaction();
+                        ft3.detach(dadosMedicaoFragment);
+                        ft3.attach(dadosSistemaFragment);
+                        ft3.commit();
                         fabNext.hide();
                         fabPicture.show();
                         fragment += 1;
@@ -151,22 +172,32 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
                 switch (fragment){
                     case 2:
                         FragmentTransaction ft2 = fm.beginTransaction();
-                        ft2.detach(dadosMedicaoFragment);
-                        ft2.attach(dadosPlacaFragment);
+                        ft2.detach(dadosPlacaFragment);
+                        ft2.attach(dadosLocalFragment);
                         ft2.commit();
                         fabPrevious.hide();
                         fragment -= 1;
-                        break;
+                    break;
 
                     case 3:
                         FragmentTransaction ft3 = fm.beginTransaction();
-                        ft3.detach(dadosSistemaFragment);
-                        ft3.attach(dadosMedicaoFragment);
+                        ft3.detach(dadosMedicaoFragment);
+                        ft3.attach(dadosPlacaFragment);
                         ft3.commit();
                         fragment -= 1;
                         fabPicture.hide();
                         fabNext.show();
-                        break;
+                    break;
+
+                    case 4:
+                        FragmentTransaction ft4 = fm.beginTransaction();
+                        ft4.detach(dadosSistemaFragment);
+                        ft4.attach(dadosMedicaoFragment);
+                        ft4.commit();
+                        fragment -= 1;
+                        fabPicture.hide();
+                        fabNext.show();
+                    break;
 
                     /*case 4:
                         FragmentTransaction ft4 = fm.beginTransaction();
@@ -194,6 +225,7 @@ public class FormActivity extends DebugActivity implements DadosPlacaFragment.Ac
                 Bundle params = new Bundle();
                 params.putString("placa",dadosPlaca.toString());
                 params.putString("medicao",dadosMedicao.toString());
+                params.putString("local",dadosLocal.toString());
                 intent.putExtras(params);
                 startActivity(intent);
                 finish();

@@ -43,6 +43,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private FloatingActionButton fabSubmit;
     private String dadosPlaca;
     private String dadosMedicao;
+    private String dadosLocal;
     private Bitmap conjuntoPicture;
     private Bitmap motorBombaPicture;
     private Bitmap placaPicture;
@@ -97,6 +98,9 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         // Receive data by bundle from previous activity
         this.dadosPlaca = args.getString("placa");
         this.dadosMedicao = args.getString("medicao");
+        this.dadosLocal = args.getString("local");
+
+        Log.i("TESTE", this.dadosLocal);
 
         // CREATE FAB TO SWITCH TO NEXT FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabSubmit = (FloatingActionButton) findViewById(R.id.fabSubmit);
