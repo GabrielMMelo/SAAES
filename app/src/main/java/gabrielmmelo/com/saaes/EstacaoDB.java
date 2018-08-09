@@ -24,7 +24,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "Criando tabela 'Estacao'");
-        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, vazao_medicao FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, altura_monometrica_medicao FLOAT NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, vazao_medicao FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, altura_monometrica_medicao FLOAT NOT NULL, tipo_partida VARCHAR(100) NOT NULL, sistema_supervisionado VARCHAR(100) NOT NULL, banco_capacitores VARCHAR(100) NOT NULL, observacoes VARCHAR(300) NOT NULL)");
         Log.i(TAG, "Tabela 'Estacao criada com sucesso");
     }
 
@@ -82,6 +82,15 @@ public class EstacaoDB extends SQLiteOpenHelper{
             c = db.query(table,null, null, null, null, null, null, null);
             return c.getCount();
 
+        }finally {
+            db.close();
+        }
+    }
+
+    public void execSQL(String sql){
+        SQLiteDatabase db = getWritableDatabase();
+        try{
+            db.execSQL(sql);
         }finally {
             db.close();
         }

@@ -114,7 +114,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
             public void onClick(View v) {
                 prepararEscrita();
                 totalEstacao();
-                getEstacao("Gabriel");
+                //getEstacao("Gabriel");
+
 
 
                 saveImage(conjuntoPicture);
