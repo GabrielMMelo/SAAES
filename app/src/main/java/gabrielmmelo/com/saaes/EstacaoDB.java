@@ -130,7 +130,11 @@ public class EstacaoDB extends SQLiteOpenHelper{
                     c.getString(c.getColumnIndex("fabricante_bomba")),
                     c.getString(c.getColumnIndex("fabricante_motor")),
                     c.getString(c.getColumnIndex("cidade")),
-                    c.getString(c.getColumnIndex("local"))
+                    c.getString(c.getColumnIndex("local")),
+                    c.getString(c.getColumnIndex("tipo_partida")),
+                    c.getString(c.getColumnIndex("banco_capacitores")),
+                    c.getString(c.getColumnIndex("sistema_supervisionado")),
+                    c.getString(c.getColumnIndex("observacoes"))
                 );
                 estacoes.add(estacao);
             }while(c.moveToNext());
@@ -175,7 +179,11 @@ public class EstacaoDB extends SQLiteOpenHelper{
                         c.getString(c.getColumnIndex("fabricante_bomba")),
                         c.getString(c.getColumnIndex("fabricante_motor")),
                         c.getString(c.getColumnIndex("cidade")),
-                        c.getString(c.getColumnIndex("local"))
+                        c.getString(c.getColumnIndex("local")),
+                        c.getString(c.getColumnIndex("tipo_partida")),
+                        c.getString(c.getColumnIndex("banco_capacitores")),
+                        c.getString(c.getColumnIndex("sistema_supervisionado")),
+                        c.getString(c.getColumnIndex("observacoes"))
                 );
                 Log.i("sql", estacao.getCidade() + " valor de cidade pela classe");
                 return estacao;
@@ -217,7 +225,11 @@ public class EstacaoDB extends SQLiteOpenHelper{
                         c.getString(c.getColumnIndex("fabricante_bomba")),
                         c.getString(c.getColumnIndex("fabricante_motor")),
                         c.getString(c.getColumnIndex("cidade")),
-                        c.getString(c.getColumnIndex("local"))
+                        c.getString(c.getColumnIndex("local")),
+                        c.getString(c.getColumnIndex("tipo_partida")),
+                        c.getString(c.getColumnIndex("banco_capacitores")),
+                        c.getString(c.getColumnIndex("sistema_supervisionado")),
+                        c.getString(c.getColumnIndex("observacoes"))
                 );
                 Log.i("sql", estacao.getCidade() + " valor de cidade pela classe");
                 return estacao;

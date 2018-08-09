@@ -83,6 +83,8 @@ public class DadosSistemaFragment extends Fragment {
         ArrayAdapter<String> adapter_sistema_supervisionado = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items_sistema_supervisionado);
         sistema_supervisionado.setAdapter(adapter_sistema_supervisionado);
 
+
+
         getActivity().setTitle("SISTEMA");
         return view;
     }
@@ -99,6 +101,7 @@ public class DadosSistemaFragment extends Fragment {
             sistema.put("tipo_partida", tipo_partida.getSelectedItem().toString() );
             sistema.put("sistema_supervisionado", sistema_supervisionado.getSelectedItem().toString());
             sistema.put("banco_capacitores", banco_capacitores.getSelectedItem().toString() );
+            sistema.put("observacoes",((TextView) getView().findViewById(R.id.observacoes)).getText());
             this.activityCommunicator.passDadosSistemaToActivity(sistema);
         } catch (JSONException json_exception){
 

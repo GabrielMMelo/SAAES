@@ -34,7 +34,7 @@ public class Estacao{
         // empty
     }
 
-    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float vazao_medicao, float altura_monometrica_placa, float altura_monometrica_medicao, String fabricante_motor, String fabricante_bomba, String cidade, String local) {
+    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float vazao_medicao, float altura_monometrica_placa, float altura_monometrica_medicao, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado, String observacoes) {
         this.tensao_placa = tensao_placa;
         this.tensao_medicao = tensao_medicao;
         this.corrente_placa = corrente_placa;
@@ -55,6 +55,10 @@ public class Estacao{
         this.fabricante_bomba = fabricante_bomba;
         this.cidade = cidade;
         this.local = local;
+        this.tipo_partida = tipo_partida;
+        this.banco_capacitores = banco_capacitores;
+        this.sistema_supervisionado = sistema_supervisionado;
+        this.observacoes = observacoes;
     }
 
     public void estacaoFromJson(String _local, String _placa, String _medicao, String _sistema) {
@@ -104,6 +108,8 @@ public class Estacao{
             e.printStackTrace();
         }
     }
+
+
 
     public String getCidade() {
         return cidade;
@@ -263,5 +269,37 @@ public class Estacao{
 
     public String getFabricante_bomba() {
         return fabricante_bomba;
+    }
+
+    public String getTipo_partida() {
+        return tipo_partida;
+    }
+
+    public void setTipo_partida(String tipo_partida) {
+        this.tipo_partida = tipo_partida;
+    }
+
+    public String getBanco_capacitores() {
+        return banco_capacitores;
+    }
+
+    public void setBanco_capacitores(String banco_capacitores) {
+        this.banco_capacitores = banco_capacitores;
+    }
+
+    public String getSistema_supervisionado() {
+        return sistema_supervisionado;
+    }
+
+    public void setSistema_supervisionado(String sistema_supervisionado) {
+        this.sistema_supervisionado = sistema_supervisionado;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 }
