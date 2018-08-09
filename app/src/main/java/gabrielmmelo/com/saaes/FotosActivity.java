@@ -49,7 +49,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private Bitmap placaPicture;
     private Bitmap bancoCapacitoresPicture;
     private Bitmap painelPicture;
-    private Estacao estacao = new Estacao(getContext());
+    private EstacaoDB estacaoDB = new EstacaoDB(getContext());
+    private Estacao estacao = new Estacao();;
 
     @Override
     public void passPicturesToActivity(int id, Bitmap bitmap) {
@@ -96,12 +97,10 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         Intent intent = getIntent();
         Bundle args = intent.getExtras();
 
-        // Receive data by bundle from previous activity
-        this.dadosPlaca = args.getString("placa");
-        this.dadosMedicao = args.getString("medicao");
-        this.dadosLocal = args.getString("local");
+        Log.i("DEBUG","DADOS DO SISTEMA " + args.getString("sistema"));
 
-        Log.i("TESTE", this.dadosLocal);
+        // Receive data by bundle from previous activity
+        this.estacao.estacaoFromJson(args.getString("local"), args.getString("placa"), args.getString("medicao"), args.getString("sistema"));
 
         // CREATE FAB TO SWITCH TO NEXT FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabSubmit = (FloatingActionButton) findViewById(R.id.fabSubmit);
@@ -114,11 +113,12 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
             @Override
             public void onClick(View v) {
                 prepararEscrita();
-                lerBanco();
+                totalEstacao();
+                getEstacao("Gabriel");
 
 
                 saveImage(conjuntoPicture);
-                Toast.makeText(FotosActivity.this, "Dados salvos no cartão SD!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FotosActivity.this, "Dados salvos no banco de dados!", Toast.LENGTH_SHORT).show();
         /*      saveImage(motorBombaPicture);
                 saveImage(placaPicture);
        */
@@ -127,8 +127,22 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         };
     }
 
-    public void lerBanco(){
-        Log.i("sql",estacao.findAll()+" REGISTROS NO BANCO");
+    public void getEstacao(int id){
+        Estacao estacao;
+        estacao = estacaoDB.getEstacao(id);
+
+        Log.i("sql", estacao.getCidade() + " é a cidade.");
+    }
+
+    public void getEstacao(String cidade){
+        Estacao estacao;
+        estacao = estacaoDB.getEstacao(cidade);
+
+        Log.i("sql", estacao.getCidade() + " é a cidade.");
+    }
+
+    public void totalEstacao(){
+        Log.i("sql",estacaoDB.getCount("estacao")+" REGISTROS NO BANCO");
     }
 
     /**
@@ -136,7 +150,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
      * Prepare .csv file parsing JSON and calling the writing method
      */
     public void prepararEscrita(){
-        estacao.save(dadosPlaca, dadosMedicao, dadosLocal);
+        estacaoDB.save(estacao);
     }
 
     /**

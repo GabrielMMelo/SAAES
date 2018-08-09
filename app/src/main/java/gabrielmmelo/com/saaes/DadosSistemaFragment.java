@@ -1,15 +1,21 @@
 package gabrielmmelo.com.saaes;
 
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -20,6 +26,8 @@ public class DadosSistemaFragment extends Fragment {
     private Spinner tipo_partida;
     private Spinner banco_capacitores;
     private Spinner sistema_supervisionado;
+    private ActivityCommunicator activityCommunicator;
+    public Context context;
 
     /**
      * Constructor needed according to Android documentation
@@ -27,6 +35,25 @@ public class DadosSistemaFragment extends Fragment {
     public DadosSistemaFragment() {
         // Required empty public constructor
     }
+
+    /**
+     * Communication interface to send data do activity
+     */
+    public interface ActivityCommunicator{
+        public void passDadosSistemaToActivity(JSONObject json);
+    }
+
+    /**
+     * Get context to send data when fragment is attached
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.context = getActivity();
+        activityCommunicator = (ActivityCommunicator)this.context;
+    }
+
 
     /**
      *
@@ -59,6 +86,25 @@ public class DadosSistemaFragment extends Fragment {
         getActivity().setTitle("SISTEMA");
         return view;
     }
+
+    /**
+     * Serialize and send data to Activity when the fragment is switched
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("DEBUG", "A FRAGMENT _SISTEMA_ FOI PAUSADA");
+        try {
+            JSONObject sistema = new JSONObject();
+            sistema.put("tipo_partida", tipo_partida.getSelectedItem().toString() );
+            sistema.put("sistema_supervisionado", sistema_supervisionado.getSelectedItem().toString());
+            sistema.put("banco_capacitores", banco_capacitores.getSelectedItem().toString() );
+            this.activityCommunicator.passDadosSistemaToActivity(sistema);
+        } catch (JSONException json_exception){
+
+        }
+    }
+
 
     /*
     @Override

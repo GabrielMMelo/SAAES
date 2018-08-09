@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/tensao"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/corrente"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/potencia_ativa"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/potencia_reativa"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -63,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/fator_potencia"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/rotacao"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/vazao"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText
@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/altura_monometrica"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
 
         <EditText

@@ -26,7 +26,7 @@
             android:id="@+id/tensao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/tensao"
             />
@@ -34,7 +34,7 @@
             android:id="@+id/corrente"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/corrente"
             />
@@ -42,7 +42,7 @@
             android:id="@+id/potencia_ativa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/potencia_ativa"
             />
@@ -50,21 +50,21 @@
             android:id="@+id/potencia_reativa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/potencia_reativa" />
         <EditText
             android:id="@+id/fator_potencia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/fator_potencia" />
         <EditText
             android:id="@+id/rotacao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/rotacao" />
         <EditText
@@ -88,14 +88,14 @@
             android:id="@+id/vazao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/vazao" />
         <EditText
             android:id="@+id/altura_monometrica"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:singleLine="true"
             android:hint="@string/altura_monometrica"/>
         <EditText
