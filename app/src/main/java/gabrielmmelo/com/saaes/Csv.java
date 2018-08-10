@@ -21,10 +21,18 @@ public class Csv {
     private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
     private Activity context;
 
+    /**
+     *
+     * @param context
+     */
     public Csv(Activity context) {
         this.context = context;
     }
 
+    /**
+     *
+     * @param estacoes
+     */
     public void exportCSV(List<Estacao> estacoes){
         Date now = new Date();
         Timestamp time = new Timestamp(now.getTime());
@@ -61,9 +69,15 @@ public class Csv {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     private Activity getContext(){
         return this.context;
     }
+
+
     /**
      *
      * @param fileName

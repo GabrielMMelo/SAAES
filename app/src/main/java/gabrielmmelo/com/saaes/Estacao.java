@@ -1,7 +1,12 @@
 package gabrielmmelo.com.saaes;
 
+import android.content.Context;
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class Estacao{
 
@@ -30,8 +35,12 @@ public class Estacao{
     private String sistema_supervisionado;
     private String observacoes;
 
-    public Estacao() {
-        // empty
+    private Context context;
+    private EstacaoDB estacaoDB;
+
+    public Estacao(Context context) {
+        this.context = context;
+        estacaoDB = new EstacaoDB(context);
     }
 
     public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float vazao_medicao, float altura_monometrica_placa, float altura_monometrica_medicao, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado, String observacoes) {
@@ -109,6 +118,51 @@ public class Estacao{
         }
     }
 
+
+    /**
+     *  Get list with all estacao
+     * @return
+     */
+    public List<Estacao> getAll(){
+        return estacaoDB.getAll();
+    }
+
+
+    /**
+     * Find estacao by id
+     * @param id
+     */
+    public void getEstacao(int id){
+        Estacao estacao;
+        estacao = estacaoDB.getEstacao(id);
+
+        Log.i("sql", estacao.getCidade() + " é a cidade.");
+    }
+
+    /**
+     * Find estacao by city name
+     * @param cidade
+     */
+    public void getEstacao(String cidade){
+        Estacao estacao;
+        estacao = estacaoDB.getEstacao(cidade);
+        Log.i("sql", estacao.getCidade() + " é a cidade.");
+    }
+
+    /**
+     * Get estacao table count
+     */
+    public void totalEstacao(){
+        Log.i("sql",estacaoDB.getCount("estacao")+" REGISTROS NO BANCO");
+    }
+
+
+    /**
+     * Insert an entire estacao into DB
+     */
+    public void prepararEscrita(){
+        estacaoDB.save(this);
+    }
 
 
     public String getCidade() {

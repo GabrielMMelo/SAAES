@@ -51,7 +51,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private Bitmap bancoCapacitoresPicture;
     private Bitmap painelPicture;
     private EstacaoDB estacaoDB = new EstacaoDB(getContext());
-    private Estacao estacao = new Estacao();
+    private Estacao estacao = new Estacao(getContext());
     private Csv csv = new Csv(this);
 
     @Override
@@ -109,14 +109,17 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         fabSubmit.setOnClickListener(onClickFabSubmit());
     }
 
-
+    /**
+     *
+     * @return
+     */
     private View.OnClickListener onClickFabSubmit(){
         return new FloatingActionButton.OnClickListener(){
             @Override
             public void onClick(View v) {
-                prepararEscrita();
-                totalEstacao();
-                csv.exportCSV(getAll());
+                estacao.prepararEscrita();
+                estacao.totalEstacao();
+
                 //getEstacao("Gabriel");
 
                 saveImage(conjuntoPicture);
@@ -129,76 +132,6 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         };
     }
 
-    public List<Estacao> getAll(){
-        return estacaoDB.getAll();
-    }
-
-    public void getEstacao(int id){
-        Estacao estacao;
-        estacao = estacaoDB.getEstacao(id);
-
-        Log.i("sql", estacao.getCidade() + " é a cidade.");
-    }
-
-    public void getEstacao(String cidade){
-        Estacao estacao;
-        estacao = estacaoDB.getEstacao(cidade);
-
-        Log.i("sql", estacao.getCidade() + " é a cidade.");
-    }
-
-    public void totalEstacao(){
-        Log.i("sql",estacaoDB.getCount("estacao")+" REGISTROS NO BANCO");
-    }
-
-    /**
-     * TODO: Fix method comment
-     * Prepare .csv file parsing JSON and calling the writing method
-     */
-    public void prepararEscrita(){
-        estacaoDB.save(estacao);
-    }
-
-
-
-    /**
-     *
-     * @param fileName
-     * @return
-     */
-    private String readFromFile(String fileName) {
-
-        String ret = "";
-
-        try {
-            InputStream inputStream = getContext().openFileInput(fileName);
-
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-            }
-            else{
-                Log.e("TESTE", "ARQUIVO NAO EXISTE");
-                return "-1";
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-
-        return ret;
-    }
 
     /**
      *
@@ -232,6 +165,10 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         }
     }
 
+    /**
+     *
+     * @return
+     */
     private Context getContext(){
         return this;
     }

@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    private static String stringTeste;
+    private Estacao estacao = new Estacao(getContext());
+    private Csv csv = new Csv(this);
 
     /**
      * Called when the activity is starting.
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_tablet);
         Button btnStart = (Button) findViewById(R.id.btnStart);
         btnStart.setOnClickListener(onClickBtnStart());
+        Button btnExportCsv = (Button) findViewById(R.id.btnExportCsv);
+        btnExportCsv.setOnClickListener(onClickBtnExportCsv());
 
     }
 
@@ -39,6 +43,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), FormActivity.class);
                 startActivity(intent);
+            }
+        };
+    }
+
+    /**
+     * OWN METHOD TO TREAT ON CLICK BUTTON EVENT
+     * @return
+     */
+    private View.OnClickListener onClickBtnExportCsv(){
+        return new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                csv.exportCSV(estacao.getAll());
+                Toast.makeText(getContext(), ".csv exportado com sucesso!", Toast.LENGTH_SHORT).show();
             }
         };
     }
