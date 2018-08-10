@@ -33,11 +33,12 @@ import java.io.OutputStreamWriter;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 public class FotosActivity extends AppCompatActivity implements FotosFragment.ActivityCommunicator{
 
-    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+
     private FragmentManager fm = getSupportFragmentManager();
     private FotosFragment fotosFragment = new FotosFragment();
     private FloatingActionButton fabSubmit;
@@ -50,7 +51,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private Bitmap bancoCapacitoresPicture;
     private Bitmap painelPicture;
     private EstacaoDB estacaoDB = new EstacaoDB(getContext());
-    private Estacao estacao = new Estacao();;
+    private Estacao estacao = new Estacao();
+    private Csv csv = new Csv(this);
 
     @Override
     public void passPicturesToActivity(int id, Bitmap bitmap) {
@@ -114,9 +116,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
             public void onClick(View v) {
                 prepararEscrita();
                 totalEstacao();
+                csv.exportCSV(getAll());
                 //getEstacao("Gabriel");
-
-
 
                 saveImage(conjuntoPicture);
                 Toast.makeText(FotosActivity.this, "Dados salvos no banco de dados!", Toast.LENGTH_SHORT).show();
@@ -126,6 +127,10 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
                 finish();
             }
         };
+    }
+
+    public List<Estacao> getAll(){
+        return estacaoDB.getAll();
     }
 
     public void getEstacao(int id){
@@ -154,72 +159,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         estacaoDB.save(estacao);
     }
 
-    /**
-     *
-     * @param fileName
-     * @param data
-     */
-    private void writeToFile(String fileName, String data) {
-        try {
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.READ_CONTACTS)) {
 
-                    Log.i("TESTE", "EXPLANATION");
-
-                    // Show an explanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
-
-                } else {
-
-                    // No explanation needed, we can request the permission.
-
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.READ_CONTACTS},
-                            MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
-
-                    // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                    // app-defined int constant. The callback method gets the
-                    // result of the request.
-                }
-            }
-
-            //Check SD card state
-            String state = Environment.getExternalStorageState();
-            if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state) || !Environment.MEDIA_MOUNTED.equals(state)) {
-                Log.e("TESTE", "Error: external storage is read only or unavailable");
-            } else {
-                Log.d("TESTE", "External storage is not read only or unavailable");
-            }
-
-            File sdCard = Environment.getExternalStorageDirectory();
-            File dir = new File (sdCard.getAbsolutePath() + "/SAAE/");
-            //dir.createNewFile(); // *
-            //Files.createDirectory(dir.toPath());
-            Log.i("TESTE",dir.getAbsolutePath());
-            if (!dir.isDirectory()) {
-                Log.i("TESTE", String.valueOf(dir.mkdirs()));
-                Log.i("TESTE", "OI");
-            }
-            else
-                Log.i("TESTE", "Directory already exists");
-
-
-            File file = new File(dir, fileName);
-            //OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput(fileName, Context.MODE_APPEND));
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true));
-            outputStreamWriter.write(data);
-            Log.i("TESTE", "Successfully created " + fileName);
-            outputStreamWriter.close();
-
-        } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
-    }
 
     /**
      *

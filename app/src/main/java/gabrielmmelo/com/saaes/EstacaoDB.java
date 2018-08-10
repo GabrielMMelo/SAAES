@@ -61,6 +61,12 @@ public class EstacaoDB extends SQLiteOpenHelper{
             values.put("altura_monometrica_medicao", estacao.getAltura_monometrica_medicao());
             values.put("vazao_medicao", estacao.getVazao_medicao());
 
+            // SISTEMA
+            values.put("tipo_partida", estacao.getTipo_partida());
+            values.put("banco_capacitores", estacao.getBanco_capacitores());
+            values.put("sistema_supervisionado", estacao.getSistema_supervisionado());
+            values.put("observacoes", estacao.getObservacoes());
+
             id = db.insert("estacao", "", values);
 
             return id;

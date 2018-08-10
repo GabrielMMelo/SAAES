@@ -99,10 +99,10 @@ public class Estacao{
             this.local = local.optString("local");
 
         // SISTEMA
-            this.tipo_partida = local.optString("tipo_partida");
-            this.sistema_supervisionado = local.optString("sistema_supervisionado");
-            this.banco_capacitores = local.optString("banco_capacitores");
-            this.observacoes = local.optString("observacoes");
+            this.tipo_partida = sistema.optString("tipo_partida");
+            this.sistema_supervisionado = sistema.optString("sistema_supervisionado");
+            this.banco_capacitores = sistema.optString("banco_capacitores");
+            this.observacoes = sistema.optString("observacoes");
 
         }catch (JSONException e) {
             e.printStackTrace();
