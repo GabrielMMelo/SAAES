@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -20,6 +24,8 @@ public class DadosPlacaFragment extends Fragment {
     public Context context;
     private DadosMotorBomba dadosPlaca = new DadosMotorBomba();
     private ActivityCommunicator activityCommunicator;
+    private boolean tensaoFlag; // Says if tensaoEditText is visible
+    private Spinner tensaoSpineer;
 
     /**
      * Constructor needed according to Android documentation
@@ -61,8 +67,42 @@ public class DadosPlacaFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dados_placa, container, false);
 
+
+        // TENSÃO
+
+        final EditText tensaoEditText = view.findViewById(R.id.tensao);
+        tensaoEditText.setVisibility(View.INVISIBLE);
+        tensaoFlag = false;
+
+        tensaoSpineer = view.findViewById(R.id.spinner_tensao);
+        String[] items_tensao = new String[]{"220", "380", "440", "760", "Outro"};
+        ArrayAdapter<String> adapter_tensao = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items_tensao);
+        tensaoSpineer.setAdapter(adapter_tensao);
+
+        tensaoSpineer.setOnItemSelectedListener(onSelectTensao(tensaoEditText));
+
+
+
         getActivity().setTitle("PLACA");
         return view;
+    }
+
+    private AdapterView.OnItemSelectedListener onSelectTensao(final EditText tensaoEditText){
+        return new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if(parentView.getSelectedItem().toString().equals("Outro")){
+                    tensaoEditText.setVisibility(View.VISIBLE);
+                    tensaoFlag = true;
+                    parentView.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
     }
 
     /**
@@ -74,7 +114,15 @@ public class DadosPlacaFragment extends Fragment {
 
         try {
             JSONObject placa = new JSONObject();
-            placa.put("tensao", ((TextView) getView().findViewById(R.id.tensao) == null) ? "null" : ((TextView) getView().findViewById(R.id.tensao)).getText() );
+            if (tensaoFlag) {
+                Log.i("DEBUG", "TRUEZAO");
+                placa.put("tensao", ((TextView) getView().findViewById(R.id.tensao) == null) ? "null" : ((TextView) getView().findViewById(R.id.tensao)).getText());
+            }
+            else {
+                Log.i("DEBUG", "FALSEZAO");
+                Log.i("DEBUG", tensaoSpineer.getSelectedItem().toString() + " É A STRING DA TENSAO ");
+                placa.put("tensao", (tensaoSpineer.getSelectedItem().toString()));
+            }
             placa.put("corrente", ((TextView) getView().findViewById(R.id.corrente) == null) ? "null" : ((TextView) getView().findViewById(R.id.corrente)).getText() );
             placa.put("potencia_ativa", ((TextView) getView().findViewById(R.id.potencia_ativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_ativa)).getText() );
             placa.put("potencia_reativa", ((TextView) getView().findViewById(R.id.potencia_reativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_reativa)).getText() );

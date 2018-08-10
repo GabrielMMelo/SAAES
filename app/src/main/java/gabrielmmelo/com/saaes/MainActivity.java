@@ -1,7 +1,6 @@
 package gabrielmmelo.com.saaes;
 
 // TODO: Campos com valores predeterminados
-// TODO: Campos de medicao
 // TODO: Images handler
 
 

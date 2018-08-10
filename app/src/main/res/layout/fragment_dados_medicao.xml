@@ -27,7 +27,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/tensao"
+            android:id="@+id/tensao_medicao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/tensao"
@@ -35,7 +35,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/corrente"
+            android:id="@+id/corrente_medicao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/corrente"
@@ -43,7 +43,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/potencia_ativa"
+            android:id="@+id/potencia_ativa_medicao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/potencia_ativa"
@@ -51,7 +51,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/potencia_reativa"
+            android:id="@+id/potencia_reativa_medicao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/potencia_reativa"
@@ -59,7 +59,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/fator_potencia"
+            android:id="@+id/fator_potencia_medicao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/fator_potencia"
@@ -67,7 +67,7 @@
             android:singleLine="true" />
 
         <EditText
-            android:id="@+id/rotacao"
+            android:id="@+id/rotacao_medicao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/rotacao"

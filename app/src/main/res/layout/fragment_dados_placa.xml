@@ -34,6 +34,13 @@
             android:inputType="numberDecimal"
             android:singleLine="true" />
 
+        <Spinner
+            android:id="@+id/spinner_tensao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
         <EditText
             android:id="@+id/corrente"
             android:layout_width="match_parent"

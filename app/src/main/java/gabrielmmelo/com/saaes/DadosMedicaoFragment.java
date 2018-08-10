@@ -72,12 +72,12 @@ public class DadosMedicaoFragment extends Fragment {
 
         try {
             JSONObject placa = new JSONObject();
-            placa.put("tensao", ((TextView) getView().findViewById(R.id.tensao) == null) ? "null" : ((TextView) getView().findViewById(R.id.tensao)).getText() );
-            placa.put("corrente", ((TextView) getView().findViewById(R.id.corrente) == null) ? "null" : ((TextView) getView().findViewById(R.id.corrente)).getText() );
-            placa.put("potencia_ativa", ((TextView) getView().findViewById(R.id.potencia_ativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_ativa)).getText() );
-            placa.put("potencia_reativa", ((TextView) getView().findViewById(R.id.potencia_reativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_reativa)).getText() );
-            placa.put("fator_potencia", ((TextView) getView().findViewById(R.id.fator_potencia) == null) ? "null" : ((TextView) getView().findViewById(R.id.fator_potencia)).getText() );
-            placa.put("rotacao", ((TextView) getView().findViewById(R.id.rotacao) == null) ? "null" : ((TextView) getView().findViewById(R.id.rotacao)).getText() );
+            placa.put("tensao", ((TextView) getView().findViewById(R.id.tensao_medicao) == null) ? "null" : ((TextView) getView().findViewById(R.id.tensao_medicao)).getText() );
+            placa.put("corrente", ((TextView) getView().findViewById(R.id.corrente_medicao) == null) ? "null" : ((TextView) getView().findViewById(R.id.corrente_medicao)).getText() );
+            placa.put("potencia_ativa", ((TextView) getView().findViewById(R.id.potencia_ativa_medicao) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_ativa_medicao)).getText() );
+            placa.put("potencia_reativa", ((TextView) getView().findViewById(R.id.potencia_reativa_medicao) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_reativa_medicao)).getText() );
+            placa.put("fator_potencia", ((TextView) getView().findViewById(R.id.fator_potencia_medicao) == null) ? "null" : ((TextView) getView().findViewById(R.id.fator_potencia_medicao)).getText() );
+            placa.put("rotacao", ((TextView) getView().findViewById(R.id.rotacao_medicao) == null) ? "null" : ((TextView) getView().findViewById(R.id.rotacao_medicao)).getText() );
 
           this.activityCommunicator.passDadosMedicaoToActivity(placa);
         } catch (JSONException json_exception){
