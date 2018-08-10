@@ -24,7 +24,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "Criando tabela 'Estacao'");
-        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, vazao_medicao FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, altura_monometrica_medicao FLOAT NOT NULL, tipo_partida VARCHAR(100) NOT NULL, sistema_supervisionado VARCHAR(100) NOT NULL, banco_capacitores VARCHAR(100) NOT NULL, observacoes VARCHAR(300) NOT NULL)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, tipo_partida VARCHAR(100) NOT NULL, sistema_supervisionado VARCHAR(100) NOT NULL, banco_capacitores VARCHAR(100) NOT NULL, observacoes VARCHAR(300) NOT NULL)");
         Log.i(TAG, "Tabela 'Estacao criada com sucesso");
     }
 
@@ -58,8 +58,6 @@ public class EstacaoDB extends SQLiteOpenHelper{
             values.put("potencia_reativa_medicao", estacao.getPotencia_reativa_medicao());
             values.put("fator_potencia_medicao", estacao.getFator_potencia_medicao());
             values.put("rotacao_medicao", estacao.getRotacao_medicao());
-            values.put("altura_monometrica_medicao", estacao.getAltura_monometrica_medicao());
-            values.put("vazao_medicao", estacao.getVazao_medicao());
 
             // SISTEMA
             values.put("tipo_partida", estacao.getTipo_partida());
@@ -139,9 +137,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
                     c.getFloat(c.getColumnIndex("rotacao_placa")),
                     c.getFloat(c.getColumnIndex("rotacao_medicao")),
                     c.getFloat(c.getColumnIndex("vazao_placa")),
-                    c.getFloat(c.getColumnIndex("vazao_medicao")),
                     c.getFloat(c.getColumnIndex("altura_monometrica_placa")),
-                    c.getFloat(c.getColumnIndex("altura_monometrica_medicao")),
                     c.getString(c.getColumnIndex("fabricante_bomba")),
                     c.getString(c.getColumnIndex("fabricante_motor")),
                     c.getString(c.getColumnIndex("cidade")),
@@ -188,9 +184,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
                         c.getFloat(c.getColumnIndex("rotacao_placa")),
                         c.getFloat(c.getColumnIndex("rotacao_medicao")),
                         c.getFloat(c.getColumnIndex("vazao_placa")),
-                        c.getFloat(c.getColumnIndex("vazao_medicao")),
                         c.getFloat(c.getColumnIndex("altura_monometrica_placa")),
-                        c.getFloat(c.getColumnIndex("altura_monometrica_medicao")),
                         c.getString(c.getColumnIndex("fabricante_bomba")),
                         c.getString(c.getColumnIndex("fabricante_motor")),
                         c.getString(c.getColumnIndex("cidade")),
@@ -234,9 +228,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
                         c.getFloat(c.getColumnIndex("rotacao_placa")),
                         c.getFloat(c.getColumnIndex("rotacao_medicao")),
                         c.getFloat(c.getColumnIndex("vazao_placa")),
-                        c.getFloat(c.getColumnIndex("vazao_medicao")),
                         c.getFloat(c.getColumnIndex("altura_monometrica_placa")),
-                        c.getFloat(c.getColumnIndex("altura_monometrica_medicao")),
                         c.getString(c.getColumnIndex("fabricante_bomba")),
                         c.getString(c.getColumnIndex("fabricante_motor")),
                         c.getString(c.getColumnIndex("cidade")),

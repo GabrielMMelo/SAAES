@@ -23,9 +23,7 @@ public class Estacao{
     private float rotacao_placa;
     private float rotacao_medicao;
     private float vazao_placa;
-    private float vazao_medicao;
     private float altura_monometrica_placa;
-    private float altura_monometrica_medicao;
     private String fabricante_motor;
     private String fabricante_bomba;
     private String cidade;
@@ -43,7 +41,7 @@ public class Estacao{
         estacaoDB = new EstacaoDB(context);
     }
 
-    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float vazao_medicao, float altura_monometrica_placa, float altura_monometrica_medicao, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado, String observacoes) {
+    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float altura_monometrica_placa, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado, String observacoes) {
         this.tensao_placa = tensao_placa;
         this.tensao_medicao = tensao_medicao;
         this.corrente_placa = corrente_placa;
@@ -57,9 +55,7 @@ public class Estacao{
         this.rotacao_placa = rotacao_placa;
         this.rotacao_medicao = rotacao_medicao;
         this.vazao_placa = vazao_placa;
-        this.vazao_medicao = vazao_medicao;
         this.altura_monometrica_placa = altura_monometrica_placa;
-        this.altura_monometrica_medicao = altura_monometrica_medicao;
         this.fabricante_motor = fabricante_motor;
         this.fabricante_bomba = fabricante_bomba;
         this.cidade = cidade;
@@ -92,16 +88,12 @@ public class Estacao{
             this.fabricante_bomba = placa.optString("fabricante_bomba");
 
         // MEDICAO
-            this.tensao_placa = Float.parseFloat(medicao.optString("tensao"));
-            this.corrente_placa = Float.parseFloat(medicao.optString("corrente"));
-            this.potencia_ativa_placa = Float.parseFloat(medicao.optString("potencia_ativa"));
-            this.potencia_reativa_placa = Float.parseFloat(medicao.optString("potencia_reativa"));
-            this.fator_potencia_placa = Float.parseFloat(medicao.optString("fator_potencia"));
-            this.rotacao_placa = Float.parseFloat(medicao.optString("rotacao"));
-            this.vazao_placa = Float.parseFloat(medicao.optString("vazao"));
-            this.altura_monometrica_placa = Float.parseFloat(medicao.optString("altura_monometrica"));
-            this.fabricante_motor = medicao.optString("fabricante_motor");
-            this.fabricante_bomba = medicao.optString("fabricante_bomba");
+            this.tensao_medicao = Float.parseFloat(medicao.optString("tensao"));
+            this.corrente_medicao = Float.parseFloat(medicao.optString("corrente"));
+            this.potencia_ativa_medicao= Float.parseFloat(medicao.optString("potencia_ativa"));
+            this.potencia_reativa_medicao = Float.parseFloat(medicao.optString("potencia_reativa"));
+            this.fator_potencia_medicao = Float.parseFloat(medicao.optString("fator_potencia"));
+            this.rotacao_medicao = Float.parseFloat(medicao.optString("rotacao"));
 
         // LOCAL
             this.cidade = local.optString("cidade");
@@ -233,17 +225,11 @@ public class Estacao{
         this.vazao_placa = vazao_placa;
     }
 
-    public void setVazao_medicao(float vazao_medicao) {
-        this.vazao_medicao = vazao_medicao;
-    }
 
     public void setAltura_monometrica_placa(float altura_monometrica_placa) {
         this.altura_monometrica_placa = altura_monometrica_placa;
     }
 
-    public void setAltura_monometrica_medicao(float altura_monometrica_medicao) {
-        this.altura_monometrica_medicao = altura_monometrica_medicao;
-    }
 
     public void setFabricante_motor(String fabricante_motor) {
         this.fabricante_motor = fabricante_motor;
@@ -305,16 +291,8 @@ public class Estacao{
         return vazao_placa;
     }
 
-    public float getVazao_medicao() {
-        return vazao_medicao;
-    }
-
     public float getAltura_monometrica_placa() {
         return altura_monometrica_placa;
-    }
-
-    public float getAltura_monometrica_medicao() {
-        return altura_monometrica_medicao;
     }
 
     public String getFabricante_motor() {

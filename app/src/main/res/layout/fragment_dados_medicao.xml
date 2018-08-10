@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,8 +7,12 @@
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="201dp"
+        android:gravity="center"
         android:orientation="vertical">
 
         <!-- MOTOR -->
@@ -20,92 +24,57 @@
             android:elegantTextHeight="true"
             android:gravity="center_horizontal"
             android:text="@string/motor"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/tensao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
-            android:singleLine="true"
             android:hint="@string/tensao"
-            />
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/corrente"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
-            android:singleLine="true"
             android:hint="@string/corrente"
-            />
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/potencia_ativa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="numberDecimal"
-            android:singleLine="true"
             android:hint="@string/potencia_ativa"
-            />
+            android:inputType="numberDecimal"
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/potencia_reativa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="@string/potencia_reativa"
             android:inputType="numberDecimal"
-            android:singleLine="true"
-            android:hint="@string/potencia_reativa" />
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/fator_potencia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="@string/fator_potencia"
             android:inputType="numberDecimal"
-            android:singleLine="true"
-            android:hint="@string/fator_potencia" />
+            android:singleLine="true" />
+
         <EditText
             android:id="@+id/rotacao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="@string/rotacao"
             android:inputType="numberDecimal"
-            android:singleLine="true"
-            android:hint="@string/rotacao" />
-        <EditText
-            android:id="@+id/fabricante_motor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:singleLine="true"
-            android:hint="@string/fabricante_motor" />
+            android:singleLine="true" />
 
-        <!-- BOMBA -->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_horizontal"
-            android:text="@string/bomba"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/vazao"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="numberDecimal"
-            android:singleLine="true"
-            android:hint="@string/vazao" />
-        <EditText
-            android:id="@+id/altura_monometrica"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="numberDecimal"
-            android:singleLine="true"
-            android:hint="@string/altura_monometrica"/>
-        <EditText
-            android:id="@+id/fabricante_bomba"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:singleLine="true"
-            android:hint="@string/fabricante_bomba" />
     </LinearLayout>
 
 
-</FrameLayout>
+</RelativeLayout>

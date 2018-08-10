@@ -1,5 +1,11 @@
 package gabrielmmelo.com.saaes;
 
+// TODO: Campos com valores predeterminados
+// TODO: Campos de medicao
+// TODO: Images handler
+
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
