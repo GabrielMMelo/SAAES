@@ -26,20 +26,29 @@
             android:text="@string/motor"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/tensao"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/tensao"
-            android:inputType="numberDecimal"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
 
-        <Spinner
-            android:id="@+id/spinner_tensao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
+            <EditText
+                android:id="@+id/tensao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/tensao"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <Spinner
+                android:id="@+id/spinner_tensao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+
+        </FrameLayout>
+
+
+
 
         <EditText
             android:id="@+id/corrente"
@@ -73,13 +82,24 @@
             android:inputType="numberDecimal"
             android:singleLine="true" />
 
-        <EditText
-            android:id="@+id/rotacao"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/rotacao"
-            android:inputType="numberDecimal"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/rotacao"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/rotacao"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+
+            <Spinner
+                android:id="@+id/spinner_rotacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+        </FrameLayout>
 
         <EditText
             android:id="@+id/fabricante_motor"
