@@ -28,6 +28,10 @@ public class DadosPlacaFragment extends Fragment {
     private Spinner tensaoSpinner;
     private boolean rotacaoFlag; // Says if rotacaoEditText is visible
     private Spinner rotacaoSpinner;
+    private boolean fabricanteMotorFlag; // Says if rotacaoEditText is visible
+    private Spinner fabricanteMotorSpinner;
+    private boolean fatorPotenciaFlag; // Says if rotacaoEditText is visible
+    private Spinner fatorPotenciaSpinner;
 
 
     /**
@@ -95,6 +99,30 @@ public class DadosPlacaFragment extends Fragment {
         rotacaoSpinner.setOnItemSelectedListener(onSelectRotacao(rotacaoEditText));
 
 
+        // FABRICANTE MOTOR
+        final EditText fabricanteMotorEditText = view.findViewById(R.id.fabricante_motor);
+        fabricanteMotorEditText.setVisibility(View.INVISIBLE);
+        fabricanteMotorFlag = false;
+
+        fabricanteMotorSpinner = view.findViewById(R.id.spinner_fabricante_motor);
+        String[] items_fabricanteMotor = new String[]{"VOGE", "EBERLE", "WEG - Alto rendimento", "WEG - Baixo rendimento", "Outro"};
+        ArrayAdapter<String> adapter_fabricanteMotor = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items_fabricanteMotor);
+        fabricanteMotorSpinner.setAdapter(adapter_fabricanteMotor);
+        fabricanteMotorSpinner.setOnItemSelectedListener(onSelectFabricanteMotor(fabricanteMotorEditText));
+
+
+        // FATOR POTÊNCIA
+        final EditText fatorPotenciaEditText = view.findViewById(R.id.fator_potencia);
+        fatorPotenciaEditText.setVisibility(View.INVISIBLE);
+        fatorPotenciaFlag = false;
+
+        fatorPotenciaSpinner = view.findViewById(R.id.spinner_fator_potencia);
+        String[] items_fatorPotencia = new String[]{"0.81", "0.82", "0.83", "0.84", "0.85", "0.86", "0.87", "0.88", "0.89", "Outro"};
+        ArrayAdapter<String> adapter_fatorPotencia = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items_fatorPotencia);
+        fatorPotenciaSpinner.setAdapter(adapter_fatorPotencia);
+        fatorPotenciaSpinner.setOnItemSelectedListener(onSelectFatorPotencia(fatorPotenciaEditText));
+
+
         getActivity().setTitle("PLACA");
         return view;
     }
@@ -135,6 +163,42 @@ public class DadosPlacaFragment extends Fragment {
         };
     }
 
+    private AdapterView.OnItemSelectedListener onSelectFabricanteMotor(final EditText fabricanteMotorEditText){
+        return new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if(parentView.getSelectedItem().toString().equals("Outro")){
+                    fabricanteMotorEditText.setVisibility(View.VISIBLE);
+                    fabricanteMotorFlag = true;
+                    parentView.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+    }
+
+    private AdapterView.OnItemSelectedListener onSelectFatorPotencia(final EditText fatorPotenciaEditText){
+        return new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                if(parentView.getSelectedItem().toString().equals("Outro")){
+                    fatorPotenciaEditText.setVisibility(View.VISIBLE);
+                    fatorPotenciaFlag = true;
+                    parentView.setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+    }
+
     /**
      * Serialize and send data to Activity when the fragment is switched
      */
@@ -154,7 +218,13 @@ public class DadosPlacaFragment extends Fragment {
             placa.put("corrente", ((TextView) getView().findViewById(R.id.corrente) == null) ? "null" : ((TextView) getView().findViewById(R.id.corrente)).getText() );
             placa.put("potencia_ativa", ((TextView) getView().findViewById(R.id.potencia_ativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_ativa)).getText() );
             placa.put("potencia_reativa", ((TextView) getView().findViewById(R.id.potencia_reativa) == null) ? "null" : ((TextView) getView().findViewById(R.id.potencia_reativa)).getText() );
-            placa.put("fator_potencia", ((TextView) getView().findViewById(R.id.fator_potencia) == null) ? "null" : ((TextView) getView().findViewById(R.id.fator_potencia)).getText() );
+
+            if (fatorPotenciaFlag)
+                placa.put("fator_potencia", ((TextView) getView().findViewById(R.id.fator_potencia) == null) ? "null" : ((TextView) getView().findViewById(R.id.fator_potencia)).getText() );
+
+            else
+                placa.put("fator_potencia", (fatorPotenciaSpinner.getSelectedItem().toString()));
+
 
             if (rotacaoFlag)
                 placa.put("rotacao", ((TextView) getView().findViewById(R.id.rotacao) == null) ? "null" : ((TextView) getView().findViewById(R.id.rotacao)).getText());
@@ -162,7 +232,12 @@ public class DadosPlacaFragment extends Fragment {
             else
                 placa.put("rotacao", (rotacaoSpinner.getSelectedItem().toString()));
 
-            placa.put("fabricante_motor", ((TextView) getView().findViewById(R.id.fabricante_motor) == null) ? "null" : ((TextView) getView().findViewById(R.id.fabricante_motor)).getText() );
+            if (fabricanteMotorFlag)
+                placa.put("fabricante_motor", ((TextView) getView().findViewById(R.id.fabricante_motor) == null) ? "null" : ((TextView) getView().findViewById(R.id.fabricante_motor)).getText());
+
+            else
+                placa.put("fabricante_motor", (fabricanteMotorSpinner.getSelectedItem().toString()));
+
             placa.put("altura_monometrica", ((TextView) getView().findViewById(R.id.altura_monometrica) == null) ? "null" : ((TextView) getView().findViewById(R.id.altura_monometrica)).getText() );
             placa.put("vazao", ((TextView) getView().findViewById(R.id.vazao) == null) ? "null" : ((TextView) getView().findViewById(R.id.vazao)).getText() );
             placa.put("fabricante_bomba", ((TextView) getView().findViewById(R.id.fabricante_bomba) == null) ? "null" : ((TextView) getView().findViewById(R.id.fabricante_bomba)).getText() );

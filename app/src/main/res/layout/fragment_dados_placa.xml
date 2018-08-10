@@ -74,13 +74,24 @@
             android:inputType="numberDecimal"
             android:singleLine="true" />
 
-        <EditText
-            android:id="@+id/fator_potencia"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/fator_potencia"
-            android:inputType="numberDecimal"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/fator_potencia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/fator_potencia"
+                android:inputType="numberDecimal"
+                android:singleLine="true" />
+            <Spinner
+                android:id="@+id/spinner_fator_potencia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+        </FrameLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -101,13 +112,23 @@
                 android:spinnerMode="dropdown" />
         </FrameLayout>
 
-        <EditText
-            android:id="@+id/fabricante_motor"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/fabricante_motor"
-            android:inputType="text"
-            android:singleLine="true" />
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/fabricante_motor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/fabricante_motor"
+                android:inputType="text"
+                android:singleLine="true" />
+            <Spinner
+                android:id="@+id/spinner_fabricante_motor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
+        </FrameLayout>
 
         <!-- BOMBA -->
 

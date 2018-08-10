@@ -1,6 +1,6 @@
 package gabrielmmelo.com.saaes;
 
-// TODO: Campos com valores predeterminados
+// TODO: Verify if fields are empty on click button
 // TODO: Images handler
 
 

@@ -76,34 +76,38 @@ public class Estacao{
 
 
         // PLACA
-            this.tensao_placa = Float.parseFloat(placa.optString("tensao"));
-            this.corrente_placa = Float.parseFloat(placa.optString("corrente"));
-            this.potencia_ativa_placa = Float.parseFloat(placa.optString("potencia_ativa"));
-            this.potencia_reativa_placa = Float.parseFloat(placa.optString("potencia_reativa"));
-            this.fator_potencia_placa = Float.parseFloat(placa.optString("fator_potencia"));
-            this.rotacao_placa = Float.parseFloat(placa.optString("rotacao"));
-            this.vazao_placa = Float.parseFloat(placa.optString("vazao"));
-            this.altura_monometrica_placa = Float.parseFloat(placa.optString("altura_monometrica"));
-            this.fabricante_motor = placa.optString("fabricante_motor");
-            this.fabricante_bomba = placa.optString("fabricante_bomba");
+            this.setTensao_placa(Float.parseFloat(placa.optString("tensao")));
+            this.setCorrente_placa(Float.parseFloat(placa.optString("corrente")));
+            this.setPotencia_ativa_placa(Float.parseFloat(placa.optString("potencia_ativa")));
+            this.setPotencia_reativa_placa(Float.parseFloat(placa.optString("potencia_reativa")));
+            this.setFator_potencia_placa(Float.parseFloat(placa.optString("fator_potencia")));
+            this.setRotacao_placa(Float.parseFloat(placa.optString("rotacao")));
+            this.setVazao_placa(Float.parseFloat(placa.optString("vazao")));
+            this.setAltura_monometrica_placa(Float.parseFloat(placa.optString("altura_monometrica")));
+            this.setFabricante_motor(placa.optString("fabricante_motor"));
+            this.setFabricante_bomba(placa.optString("fabricante_bomba"));
+
 
         // MEDICAO
-            this.tensao_medicao = Float.parseFloat(medicao.optString("tensao"));
-            this.corrente_medicao = Float.parseFloat(medicao.optString("corrente"));
-            this.potencia_ativa_medicao= Float.parseFloat(medicao.optString("potencia_ativa"));
-            this.potencia_reativa_medicao = Float.parseFloat(medicao.optString("potencia_reativa"));
-            this.fator_potencia_medicao = Float.parseFloat(medicao.optString("fator_potencia"));
-            this.rotacao_medicao = Float.parseFloat(medicao.optString("rotacao"));
+            this.setTensao_medicao(Float.parseFloat(medicao.optString("tensao")));
+            this.setCorrente_medicao(Float.parseFloat(medicao.optString("corrente")));
+            this.setPotencia_ativa_medicao(Float.parseFloat(medicao.optString("potencia_ativa")));
+            this.setPotencia_reativa_medicao(Float.parseFloat(medicao.optString("potencia_reativa")));
+            this.setFator_potencia_medicao(Float.parseFloat(medicao.optString("fator_potencia")));
+            this.setRotacao_medicao(Float.parseFloat(medicao.optString("rotacao")));
 
         // LOCAL
-            this.cidade = local.optString("cidade");
-            this.local = local.optString("local");
+            this.setCidade(local.optString("cidade"));
+            this.setLocal(local.optString("local"));
 
         // SISTEMA
-            this.tipo_partida = sistema.optString("tipo_partida");
-            this.sistema_supervisionado = sistema.optString("sistema_supervisionado");
-            this.banco_capacitores = sistema.optString("banco_capacitores");
-            this.observacoes = sistema.optString("observacoes");
+            this.setTipo_partida(sistema.optString("tipo_partida"));
+            this.setSistema_supervisionado(sistema.optString("sistema_supervisionado"));
+            this.setBanco_capacitores(sistema.optString("banco_capacitores"));
+            this.setObservacoes(sistema.optString("observacoes"));
+
+            Log.i("DEBUG", getFabricante_motor() + " Fabricante motor");
+            Log.i("DEBUG", getFabricante_bomba() + " Fabricante bomba");
 
         }catch (JSONException e) {
             e.printStackTrace();

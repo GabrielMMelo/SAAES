@@ -40,8 +40,9 @@ public class Csv {
         writeToFile(time+".csv", "sep=,");
 
 
+
         for (Estacao estacao : estacoes) {
-            Log.i("DEBUG", estacao.getCidade());
+
             // MOTOR
             writeToFile(time+".csv", "\nLocal, "+ estacao.getCidade() + "/" + estacao.getLocal() + ", , ");
             writeToFile(time+".csv", "\nMotor, , Dados de Placa, Dados medidos");
@@ -51,11 +52,11 @@ public class Csv {
             writeToFile(time+".csv", "\n , Potência Reativa (kVAr), " + estacao.getPotencia_reativa_placa() + ", " + estacao.getPotencia_reativa_medicao());
             writeToFile(time+".csv", "\n , Fator de Potência, " + estacao.getFator_potencia_placa() + ", " + estacao.getFator_potencia_medicao());
             writeToFile(time+".csv", "\n , Rotação (rpm), " + estacao.getRotacao_placa() + ", " + estacao.getRotacao_medicao());
-            writeToFile(time+".csv", "\n , Fabricante, " + estacao.getFabricante_motor() + ", , ");
+            writeToFile(time+".csv", "\n , Fabricante, " + estacao.getFabricante_bomba() + ", , ");
             writeToFile(time+".csv", "\n\n");
 
             // BOMBA
-            writeToFile(time+".csv", "\nBomba, Fabricante, " + estacao.getFabricante_bomba() + ", ");
+            writeToFile(time+".csv", "\nBomba, Fabricante, " + estacao.getFabricante_motor() + ", ");
             writeToFile(time+".csv", "\n , Vazão (m³/h), " + estacao.getVazao_placa() + ", ");
             writeToFile(time+".csv", "\n , Altura monométrica (mca), " + estacao.getAltura_monometrica_placa() + ", ");
             writeToFile(time+".csv", "\n\n");
@@ -64,7 +65,10 @@ public class Csv {
             writeToFile(time+".csv", "\n , Tipo de partida, " + estacao.getTipo_partida() + ", ");
             writeToFile(time+".csv", "\n , Banco de capacitores, " + estacao.getBanco_capacitores() + ", ");
             writeToFile(time+".csv", "\n , Sistema supervisionado, " + estacao.getSistema_supervisionado() + ", ");
-            writeToFile(time+".csv", "\n\n\n");
+            writeToFile(time+".csv", "\n\n");
+            writeToFile(time+".csv", "\nObservações, , , \n");
+            writeToFile(time+".csv", estacao.getObservacoes() );
+            writeToFile(time+".csv", "\n\n\n\n");
 
         }
     }
