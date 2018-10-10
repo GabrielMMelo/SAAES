@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,9 +13,9 @@
     <LinearLayout
         android:layout_width="400dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="201dp"
+        android:layout_marginTop="0dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -46,8 +50,6 @@
                 android:spinnerMode="dropdown" />
 
         </FrameLayout>
-
-
 
 
         <EditText
@@ -85,6 +87,7 @@
                 android:hint="@string/fator_potencia"
                 android:inputType="numberDecimal"
                 android:singleLine="true" />
+
             <Spinner
                 android:id="@+id/spinner_fator_potencia"
                 android:layout_width="match_parent"
@@ -96,6 +99,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/rotacao"
                 android:layout_width="match_parent"
@@ -115,6 +119,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <EditText
                 android:id="@+id/fabricante_motor"
                 android:layout_width="match_parent"
@@ -122,6 +127,7 @@
                 android:hint="@string/fabricante_motor"
                 android:inputType="text"
                 android:singleLine="true" />
+
             <Spinner
                 android:id="@+id/spinner_fabricante_motor"
                 android:layout_width="match_parent"
@@ -137,7 +143,8 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:text="@string/bomba"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
 
         <EditText
             android:id="@+id/vazao"
@@ -161,10 +168,12 @@
             android:layout_height="match_parent"
             android:hint="@string/fabricante_bomba"
             android:inputType="text"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:layout_marginBottom="70dp"/>
 
 
     </LinearLayout>
 
 
 </RelativeLayout>
+</ScrollView>

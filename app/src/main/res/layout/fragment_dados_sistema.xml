@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,13 +18,16 @@
         android:text="@string/tipo_partida"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:textSize="30sp"/>
+        android:textSize="15sp"/>
 
     <Spinner
         android:id="@+id/spinner_tipo_partida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="41dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
@@ -28,9 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="128dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="90dp"
         android:text="@string/banco_capacitores"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <Spinner
@@ -39,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="178dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="129dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
@@ -48,9 +58,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="259dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="169dp"
         android:text="@string/sistema_supervisionado"
-        android:textSize="30sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <Spinner
@@ -59,7 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="311dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="211dp"
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown" />
 
@@ -68,20 +80,67 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="513dp"
-        android:text="Observações"
-        android:textSize="30sp"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="271dp"
+        android:text="Endereço"
+        android:textSize="15sp"
         android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/endereco"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="300dp"
+        android:background="@color/colorLight" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="341dp"
+        android:text="Número de Instalação"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+    <EditText
+        android:id="@+id/num_instalacao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="370dp"
+        android:background="@color/colorLight" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="410dp"
+        android:text="Observações"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
 
     <EditText
         android:id="@+id/observacoes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="397dp"
+        android:layout_marginBottom="440dp"
         android:background="@color/colorLight"
         android:lines="8"
         android:singleLine="false" />
 
 </RelativeLayout>
+</ScrollView>
