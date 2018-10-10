@@ -31,6 +31,11 @@ public class Estacao{
     private String tipo_partida;
     private String banco_capacitores;
     private String sistema_supervisionado;
+
+
+
+    private String numero_instalacao;
+    private String endereco;
     private String observacoes;
 
     private Context context;
@@ -41,7 +46,7 @@ public class Estacao{
         estacaoDB = new EstacaoDB(context);
     }
 
-    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float altura_monometrica_placa, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado, String observacoes) {
+    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float altura_monometrica_placa, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado,String numero_instalacao, String endereco, String observacoes) {
         this.tensao_placa = tensao_placa;
         this.tensao_medicao = tensao_medicao;
         this.corrente_placa = corrente_placa;
@@ -64,6 +69,8 @@ public class Estacao{
         this.banco_capacitores = banco_capacitores;
         this.sistema_supervisionado = sistema_supervisionado;
         this.observacoes = observacoes;
+        this.numero_instalacao = numero_instalacao;
+        this.endereco = endereco;
     }
 
     public void estacaoFromJson(String _local, String _placa, String _medicao, String _sistema) {
@@ -105,6 +112,8 @@ public class Estacao{
             this.setSistema_supervisionado(sistema.optString("sistema_supervisionado"));
             this.setBanco_capacitores(sistema.optString("banco_capacitores"));
             this.setObservacoes(sistema.optString("observacoes"));
+            this.setEndereco(sistema.optString("endereco"));
+            this.setNumero_instalacao(sistema.optString("numero_instalacao"));
 
             Log.i("DEBUG", getFabricante_motor() + " Fabricante motor");
             Log.i("DEBUG", getFabricante_bomba() + " Fabricante bomba");
@@ -337,5 +346,20 @@ public class Estacao{
 
     public void setObservacoes(String observacoes) {
         this.observacoes = observacoes;
+    }
+    public String getNumero_instalacao() {
+        return numero_instalacao;
+    }
+
+    public void setNumero_instalacao(String numero_instalacao) {
+        this.numero_instalacao = numero_instalacao;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }
