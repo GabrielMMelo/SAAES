@@ -45,6 +45,8 @@ public class EstacaoDB extends SQLiteOpenHelper{
             values.put("numero_instalacao", estacao.getNumero_instalacao());
             values.put("endereco", estacao.getEndereco());
 
+            Log.i("ENDEREÇO", estacao.getNumero_instalacao() + "");
+
             // PLACA
             values.put("tensao_placa", estacao.getTensao_placa());
             values.put("corrente_placa", estacao.getCorrente_placa());

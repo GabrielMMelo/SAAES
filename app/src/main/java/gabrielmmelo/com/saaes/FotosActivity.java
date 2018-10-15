@@ -104,6 +104,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         // Receive data by bundle from previous activity
         this.estacao.estacaoFromJson(args.getString("local"), args.getString("placa"), args.getString("medicao"), args.getString("sistema"));
 
+        Log.i("ENDEREÇO", this.estacao.getEndereco());
+
         // CREATE FAB TO SWITCH TO NEXT FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabSubmit = (FloatingActionButton) findViewById(R.id.fabSubmit);
         fabSubmit.setOnClickListener(onClickFabSubmit());

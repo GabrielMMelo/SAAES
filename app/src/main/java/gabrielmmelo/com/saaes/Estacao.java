@@ -106,14 +106,14 @@ public class Estacao{
         // LOCAL
             this.setCidade(local.optString("cidade"));
             this.setLocal(local.optString("local"));
+            this.setEndereco(local.optString("endereco"));
+            this.setNumero_instalacao(local.optString("numero_instalacao"));
 
         // SISTEMA
             this.setTipo_partida(sistema.optString("tipo_partida"));
             this.setSistema_supervisionado(sistema.optString("sistema_supervisionado"));
             this.setBanco_capacitores(sistema.optString("banco_capacitores"));
             this.setObservacoes(sistema.optString("observacoes"));
-            this.setEndereco(sistema.optString("endereco"));
-            this.setNumero_instalacao(sistema.optString("numero_instalacao"));
 
             Log.i("DEBUG", getFabricante_motor() + " Fabricante motor");
             Log.i("DEBUG", getFabricante_bomba() + " Fabricante bomba");
@@ -166,7 +166,7 @@ public class Estacao{
      * Insert an entire estacao into DB
      */
     public void prepararEscrita(){
-        estacaoDB.save(this);
+        Log.i("ENDEREÇO", estacaoDB.save(this) + "");
     }
 
 

@@ -61,6 +61,8 @@ public class DadosLocalFragment extends Fragment {
             JSONObject local = new JSONObject();
             local.put("cidade", ((TextView) getView().findViewById(R.id.cidade) == null) ? "null" : ((TextView) getView().findViewById(R.id.cidade)).getText() );
             local.put("local", ((TextView) getView().findViewById(R.id.local) == null) ? "null" : ((TextView) getView().findViewById(R.id.local)).getText() );
+            local.put("numero_instalacao",((TextView) getView().findViewById(R.id.num_instalacao)).getText());
+            local.put("endereco",((TextView) getView().findViewById(R.id.endereco)).getText());
             this.activityCommunicator.passDadosLocalToActivity(local);
         } catch (JSONException json_exception){
 

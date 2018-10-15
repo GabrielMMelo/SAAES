@@ -102,8 +102,6 @@ public class DadosSistemaFragment extends Fragment {
             sistema.put("sistema_supervisionado", sistema_supervisionado.getSelectedItem().toString());
             sistema.put("banco_capacitores", banco_capacitores.getSelectedItem().toString() );
             sistema.put("observacoes",((TextView) getView().findViewById(R.id.observacoes)).getText());
-            sistema.put("numero_instalacao",((TextView) getView().findViewById(R.id.num_instalacao)).getText());
-            sistema.put("endereco",((TextView) getView().findViewById(R.id.endereco)).getText());
             this.activityCommunicator.passDadosSistemaToActivity(sistema);
         } catch (JSONException json_exception){
 
