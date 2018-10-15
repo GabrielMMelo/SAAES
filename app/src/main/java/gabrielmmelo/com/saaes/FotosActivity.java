@@ -104,8 +104,6 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         // Receive data by bundle from previous activity
         this.estacao.estacaoFromJson(args.getString("local"), args.getString("placa"), args.getString("medicao"), args.getString("sistema"));
 
-        Log.i("ENDEREÇO", this.estacao.getEndereco());
-
         // CREATE FAB TO SWITCH TO NEXT FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabSubmit = (FloatingActionButton) findViewById(R.id.fabSubmit);
         fabSubmit.setOnClickListener(onClickFabSubmit());
@@ -124,7 +122,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
 
                 //getEstacao("Gabriel");
 
-                saveImage(conjuntoPicture);
+                saveImage(estacao.getCidade() + "_" + estacao.getLocal() + "_" + "Motor" + estacao.getTensao_placa() + "conjunto", conjuntoPicture);
                 Toast.makeText(FotosActivity.this, "Dados salvos no banco de dados!", Toast.LENGTH_SHORT).show();
         /*      saveImage(motorBombaPicture);
                 saveImage(placaPicture);
@@ -139,7 +137,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
      *
      * @param finalBitmap
      */
-    private void saveImage(Bitmap finalBitmap) {
+    private void saveImage(String filename, Bitmap finalBitmap) {
 
         File sdCard = Environment.getExternalStorageDirectory();
         File dir = new File (sdCard.getAbsolutePath() + "/SAAE/img");
@@ -149,11 +147,8 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         }
         else
             Log.i("TESTE", "Directory already exists");
-        Random generator = new Random();
-        int n = 10000;
-        n = generator.nextInt(n);
-        String fname = "Image-"+ n +".jpg";
-        File file = new File (dir, fname);
+
+        File file = new File (dir, filename + ".jpg");
         if (file.exists ())
             file.delete ();
         try {
