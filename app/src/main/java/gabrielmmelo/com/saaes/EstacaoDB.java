@@ -42,6 +42,8 @@ public class EstacaoDB extends SQLiteOpenHelper{
             // LOCAL
             values.put("cidade", estacao.getCidade());
             values.put("local", estacao.getLocal());
+            values.put("numero_instalacao", estacao.getNumero_instalacao());
+            values.put("endereco", estacao.getEndereco());
 
             // PLACA
             values.put("tensao_placa", estacao.getTensao_placa());
@@ -68,8 +70,6 @@ public class EstacaoDB extends SQLiteOpenHelper{
             values.put("banco_capacitores", estacao.getBanco_capacitores());
             values.put("sistema_supervisionado", estacao.getSistema_supervisionado());
             values.put("observacoes", estacao.getObservacoes());
-            values.put("numero_instalacao", estacao.getNumero_instalacao());
-            values.put("endereco", estacao.getEndereco());
 
             id = db.insert("estacao", "", values);
 

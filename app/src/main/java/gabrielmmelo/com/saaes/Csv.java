@@ -35,16 +35,15 @@ public class Csv {
      */
     public void exportCSV(List<Estacao> estacoes){
         Date now = new Date();
-        Timestamp time = new Timestamp(now.getTime());
-
+        Timestamp timestamp = new Timestamp(now.getTime());
+        String time= timestamp + "";
+        time= time.replaceAll(" ","_");
         writeToFile(time+".csv", "sep=,");
-
-
 
         for (Estacao estacao : estacoes) {
 
             // MOTOR
-            writeToFile(time+".csv", "\nLocal, "+ estacao.getCidade() + "/" + estacao.getLocal() + ", , ");
+            writeToFile(time+".csv", "\nLocal, "+ estacao.getCidade() + "/" + estacao.getLocal() + ", " + estacao.getEndereco() + ", Número de instalação: " + estacao.getNumero_instalacao());
             writeToFile(time+".csv", "\nMotor, , Dados de Placa, Dados medidos");
             writeToFile(time+".csv", "\n , Tensão (V), " + estacao.getTensao_placa() + ", " + estacao.getTensao_medicao());
             writeToFile(time+".csv", "\n , Corrente (A), " + estacao.getCorrente_placa() + ", " + estacao.getCorrente_medicao());
@@ -89,6 +88,11 @@ public class Csv {
      */
     private void writeToFile(String fileName, String data) {
         try {
+            /*
+             Try this to solve permission problems
+             in API 23
+             https://stackoverflow.com/questions/33162152/storage-permission-error-in-marshmallow/41221852#41221852
+             */
             if (ContextCompat.checkSelfPermission(getContext(),
                     Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -110,6 +114,7 @@ public class Csv {
                             new String[]{Manifest.permission.READ_CONTACTS},
                             MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 
+                    Log.i("TESTE", "TESTE");
                     // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                     // app-defined int constant. The callback method gets the
                     // result of the request.
@@ -128,10 +133,10 @@ public class Csv {
             File dir = new File (sdCard.getAbsolutePath() + "/SAAE/");
             //dir.createNewFile(); // *
             //Files.createDirectory(dir.toPath());
-            Log.i("TESTE",dir.getAbsolutePath());
+            Log.i("LOGZAO",dir.getAbsolutePath());
             if (!dir.isDirectory()) {
-                Log.i("TESTE", String.valueOf(dir.mkdirs()));
-                Log.i("TESTE", "OI");
+                Log.e("LOGZAO", String.valueOf(dir.mkdirs()));
+                Log.i("LOGZAO", "OI");
             }
             else
                 Log.i("TESTE", "Directory already exists");
@@ -141,11 +146,11 @@ public class Csv {
             //OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput(fileName, Context.MODE_APPEND));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true));
             outputStreamWriter.write(data);
-            Log.i("TESTE", "Successfully created " + fileName);
+            Log.i("LOGZAO", "Successfully created " + fileName);
             outputStreamWriter.close();
 
         } catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
+            Log.e("LOGZAO", "File write failed: " + e.toString());
         }
     }
 }
