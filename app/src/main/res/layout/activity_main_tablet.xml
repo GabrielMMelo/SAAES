@@ -42,7 +42,7 @@
         android:layout_height="65dp"
         android:layout_below="@+id/btnExportCsv"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="-67dp"
+        android:layout_marginTop="-167dp"
         android:background="@drawable/start_btn"
         android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/novo_registro"
@@ -55,12 +55,32 @@
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="89dp"
+        android:layout_marginBottom="194dp"
         android:background="@drawable/start_btn"
+        android:backgroundTint="@color/colorAccent"
         android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/exportar_csv"
         android:textColor="@color/colorLight"
         android:textSize="20sp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        tools:srcCompat="@mipmap/logo_ufla_transparente" />
+
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="424dp"
+        android:textColor="@color/colorOpacity"
+        android:textSize="20sp" />
 
 </RelativeLayout>

@@ -11,9 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 // log
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(onClickBtnStart());
         Button btnExportCsv = (Button) findViewById(R.id.btnExportCsv);
         btnExportCsv.setOnClickListener(onClickBtnExportCsv());
-
+        TextView author = (TextView) findViewById(R.id.author);
+        author.setText(Html.fromHtml("Por <a href=\"https://github.com/GabrielMMelo\"> Gabriel M. Melo </a>"));
+        author.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
     }
 
     /**
