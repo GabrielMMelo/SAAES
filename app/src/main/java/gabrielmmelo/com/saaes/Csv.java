@@ -35,40 +35,43 @@ public class Csv {
      */
     public void exportCSV(List<Estacao> estacoes){
         Date now = new Date();
-        Timestamp timestamp = new Timestamp(now.getTime());
-        String time= timestamp + "";
-        time= time.replaceAll(" ","_");
-        writeToFile(time+".csv", "sep=,");
+        Timestamp time = new Timestamp(now.getTime());
 
+        int i = 0;
         for (Estacao estacao : estacoes) {
 
-            // MOTOR
-            writeToFile(time+".csv", "\nLocal, "+ estacao.getCidade() + "/" + estacao.getLocal() + ", " + estacao.getEndereco() + ", Número de instalação: " + estacao.getNumero_instalacao());
-            writeToFile(time+".csv", "\nMotor, , Dados de Placa, Dados medidos");
-            writeToFile(time+".csv", "\n , Tensão (V), " + estacao.getTensao_placa() + ", " + estacao.getTensao_medicao());
-            writeToFile(time+".csv", "\n , Corrente (A), " + estacao.getCorrente_placa() + ", " + estacao.getCorrente_medicao());
-            writeToFile(time+".csv", "\n , Potência Ativa (kW/cv), " + estacao.getPotencia_ativa_placa() + ", " + estacao.getPotencia_ativa_medicao());
-            writeToFile(time+".csv", "\n , Potência Reativa (kVAr), " + estacao.getPotencia_reativa_placa() + ", " + estacao.getPotencia_reativa_medicao());
-            writeToFile(time+".csv", "\n , Fator de Potência, " + estacao.getFator_potencia_placa() + ", " + estacao.getFator_potencia_medicao());
-            writeToFile(time+".csv", "\n , Rotação (rpm), " + estacao.getRotacao_placa() + ", " + estacao.getRotacao_medicao());
-            writeToFile(time+".csv", "\n , Fabricante, " + estacao.getFabricante_bomba() + ", , ");
-            writeToFile(time+".csv", "\n\n");
+            if(i++ == estacoes.size() - 1) {
+                writeToFile("estacoes.csv", "\nData:" + time);
 
-            // BOMBA
-            writeToFile(time+".csv", "\nBomba, Fabricante, " + estacao.getFabricante_motor() + ", ");
-            writeToFile(time+".csv", "\n , Vazão (m³/h), " + estacao.getVazao_placa() + ", ");
-            writeToFile(time+".csv", "\n , Altura monométrica (mca), " + estacao.getAltura_monometrica_placa() + ", ");
-            writeToFile(time+".csv", "\n\n");
+                // MOTOR
 
-            // SISTEMA
-            writeToFile(time+".csv", "\n , Tipo de partida, " + estacao.getTipo_partida() + ", ");
-            writeToFile(time+".csv", "\n , Banco de capacitores, " + estacao.getBanco_capacitores() + ", ");
-            writeToFile(time+".csv", "\n , Sistema supervisionado, " + estacao.getSistema_supervisionado() + ", ");
-            writeToFile(time+".csv", "\n\n");
-            writeToFile(time+".csv", "\nObservações, , , \n");
-            writeToFile(time+".csv", estacao.getObservacoes() );
-            writeToFile(time+".csv", "\n\n\n\n");
 
+                writeToFile("estacoes.csv", "\nLocal, " + estacao.getCidade() + "/" + estacao.getLocal() + ", " + estacao.getEndereco() + ", Número de instalação: " + estacao.getNumero_instalacao());
+                writeToFile("estacoes.csv", "\nMotor, , Dados de Placa, Dados medidos");
+                writeToFile("estacoes.csv", "\n , Tensão (V), " + estacao.getTensao_placa() + ", " + estacao.getTensao_medicao());
+                writeToFile("estacoes.csv", "\n , Corrente (A), " + estacao.getCorrente_placa() + ", " + estacao.getCorrente_medicao());
+                writeToFile("estacoes.csv", "\n , Potência Ativa (kW/cv), " + estacao.getPotencia_ativa_placa() + ", " + estacao.getPotencia_ativa_medicao());
+                writeToFile("estacoes.csv", "\n , Potência Reativa (kVAr), " + estacao.getPotencia_reativa_placa() + ", " + estacao.getPotencia_reativa_medicao());
+                writeToFile("estacoes.csv", "\n , Fator de Potência, " + estacao.getFator_potencia_placa() + ", " + estacao.getFator_potencia_medicao());
+                writeToFile("estacoes.csv", "\n , Rotação (rpm), " + estacao.getRotacao_placa() + ", " + estacao.getRotacao_medicao());
+                writeToFile("estacoes.csv", "\n , Fabricante, " + estacao.getFabricante_bomba() + ", , ");
+                writeToFile("estacoes.csv", "\n\n");
+
+                // BOMBA
+                writeToFile("estacoes.csv", "\nBomba, Fabricante, " + estacao.getFabricante_motor() + ", ");
+                writeToFile("estacoes.csv", "\n , Vazão (m³/h), " + estacao.getVazao_placa() + ", ");
+                writeToFile("estacoes.csv", "\n , Altura monométrica (mca), " + estacao.getAltura_monometrica_placa() + ", ");
+                writeToFile("estacoes.csv", "\n\n");
+
+                // SISTEMA
+                writeToFile("estacoes.csv", "\n , Tipo de partida, " + estacao.getTipo_partida() + ", ");
+                writeToFile("estacoes.csv", "\n , Banco de capacitores, " + estacao.getBanco_capacitores() + ", ");
+                writeToFile("estacoes.csv", "\n , Sistema supervisionado, " + estacao.getSistema_supervisionado() + ", ");
+                writeToFile("estacoes.csv", "\n\n");
+                writeToFile("estacoes.csv", "\nObservações, , , \n");
+                writeToFile("estacoes.csv", estacao.getObservacoes());
+                writeToFile("estacoes.csv", "\n\n\n\n");
+            }
         }
     }
 
@@ -143,8 +146,12 @@ public class Csv {
 
 
             File file = new File(dir, fileName);
-            //OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput(fileName, Context.MODE_APPEND));
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file, true));
+            if (!file.exists()) {
+                outputStreamWriter.write("sep=,");
+            }
+            //OutputStreamWriter outputStreamWriter = new OutputStreamWriter(getContext().openFileOutput(fileName, Context.MODE_APPEND));
+
             outputStreamWriter.write(data);
             Log.i("LOGZAO", "Successfully created " + fileName);
             outputStreamWriter.close();
