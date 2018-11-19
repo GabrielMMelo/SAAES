@@ -33,7 +33,7 @@ tools:context=".DadosLocalFragment">
         android:background="@drawable/start_btn"
         android:layout_marginTop='20dp'
         android:padding="@dimen/activity_horizontal_margin"
-        android:text="@string/exportar_csv"
+        android:text="@string/new_project"
         android:textColor="@color/colorLight"
         android:textSize="20sp" />
 

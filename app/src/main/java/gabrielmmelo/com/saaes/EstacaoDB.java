@@ -122,6 +122,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
         SQLiteDatabase db = getWritableDatabase();
         try{
             Cursor c = db.query("estacao", null, null, null, null, null, null, null);
+            Log.i("FABIO", c.toString());
             return toList(c);
         }finally {
             db.close();

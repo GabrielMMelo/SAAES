@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -109,6 +110,11 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         // Receive data by bundle from previous activity
         this.estacao.estacaoFromJson(args.getString("local"), args.getString("placa"), args.getString("medicao"), args.getString("sistema"));
 
+        Bundle bundle = new Bundle();
+        bundle.putString("local", args.getString("local"));
+        bundle.putString("placa", args.getString("placa"));
+        bundle.putString("sistema", args.getString("sistema"));
+        fotosFragment.setArguments(bundle);
         // CREATE FAB TO SWITCH TO NEXT FORM FRAGMENT & SET EXCLUSIVE TREATMENT EVENT METHOD
         fabSubmit = (FloatingActionButton) findViewById(R.id.fabSubmit);
         fabSubmit.setOnClickListener(onClickFabSubmit());

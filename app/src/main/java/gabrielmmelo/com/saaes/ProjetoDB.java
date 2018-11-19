@@ -35,6 +35,9 @@ public class ProjetoDB extends SQLiteOpenHelper {
     public long save(Projeto projeto){
         SQLiteDatabase db = getWritableDatabase();
 
+        Log.i(TAG, "Criando tabela Projeto");
+        db.execSQL("CREATE TABLE IF NOT EXISTS projeto(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, nome VARCHAR(100) UNIQUE NOT NULL)");
+        Log.i(TAG, "Tabela projeto criada com sucesso");
         long id;
         try{
             ContentValues values = new ContentValues();

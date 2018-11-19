@@ -22,8 +22,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import livroandroid.lib.utils.SDCardUtils;
 
@@ -37,8 +43,12 @@ public class FotosFragment extends Fragment {
     private ImageView foto_motor_bomba;
     private ImageView foto_banco_capacitores;
     private ImageView foto_painel;
+    private String local;
+    private String placa;
+    private String sistema;
     private int foto_selecionada;
     private ActivityCommunicator activityCommunicator;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     /**
      * Constructor needed according to Android documentation
@@ -97,11 +107,53 @@ public class FotosFragment extends Fragment {
         foto_painel = (ImageView) view.findViewById(R.id.foto_painel);
         ImageButton btn_painel = (ImageButton) view.findViewById(R.id.btn_foto_painel);
         btn_painel.setOnClickListener(OnClickBtnPainelListener());
-
+        Bundle args = getArguments();
+        local = args.getString("local");
+        placa = args.getString("placa");
+        sistema = args.getString("sistema");
+        Log.i("FABIO", local);
         getActivity().setTitle("FOTOS");
         return view;
     }
 
+    private void createIntent(int pictureNumber, String pictureKind ){
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
+        }
+        else{
+            foto_selecionada = pictureNumber;
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                File photoFile = null;
+                try {
+                    JSONObject l = new JSONObject(local);
+                    JSONObject p = new JSONObject(placa);
+                    JSONObject s = new JSONObject(sistema);
+
+                    String projeto = l.optString("projeto");
+                    String local = l.optString("local");
+                    String cidade = l.optString("cidade");
+
+                    photoFile = createImageFile(projeto + "_" + local + "_" + cidade + "_" + pictureKind);
+                } catch (IOException ex) {
+                    // Error occurred while creating the File
+                }catch (JSONException ex) {
+                    ex.printStackTrace();
+                }
+                // Continue only if the File was successfully created
+                if (photoFile != null) {
+                    Uri photoURI = FileProvider.getUriForFile(getContext(),
+                            "com.example.android.fileprovider",
+                            photoFile);
+                    Log.i("FABIO", photoURI.toString());
+                    takePictureIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        }
+    }
     /**
      *
      * @return
@@ -110,21 +162,7 @@ public class FotosFragment extends Fragment {
         return new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
-                }
-                else{
-                    foto_selecionada = 1;
-          //          File file;
-            //        file = SDCardUtils.getPrivateFile(getContext(), "teste.jpg", Environment.DIRECTORY_PICTURES);
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-              //      Uri uri = FileProvider.getUriForFile(getContext(),getContext().getApplicationContext().getPackageName() + ".provider", file);
-                //    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-                    startActivityForResult(intent, 0);
-                }
-
+                createIntent(1, "CONJUNTO");
             }
         };
     }
@@ -137,17 +175,7 @@ public class FotosFragment extends Fragment {
         return new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
-                }
-                else{
-                    foto_selecionada = 2;
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 0);
-                }
-
+                createIntent(2, "MOTOR_BOMBA");
             }
         };
     }
@@ -160,16 +188,7 @@ public class FotosFragment extends Fragment {
         return new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
-                }
-                else{
-                    foto_selecionada = 3;
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 0);
-                }
-
+                createIntent(3, "PLACA");
             }
         };
     }
@@ -179,16 +198,7 @@ public class FotosFragment extends Fragment {
         return new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
-                }
-                else{
-                    foto_selecionada = 4;
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 0);
-                }
-
+                createIntent(4, "BANCO_CAPACITORES");
             }
         };
     }
@@ -198,20 +208,37 @@ public class FotosFragment extends Fragment {
         return new ImageButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 0);
-                }
-                else{
-                    foto_selecionada = 5;
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 0);
-                }
-
+                createIntent(5, "PAINEL");
             }
         };
     }
+    String mCurrentPhotoPath;
 
+    private File createImageFile(String filename) throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = filename + "_" + timeStamp;
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        Log.i("FABIO", "NEW GET EXTERNAL " + storageDir.toString());
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = image.getAbsolutePath();
+        Log.i("FABIO", mCurrentPhotoPath);
+        return image;
+    }
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        getActivity().sendBroadcast(mediaScanIntent);
+    }
     /**
      *  Receive activity result
      *
@@ -222,10 +249,14 @@ public class FotosFragment extends Fragment {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("FABIO", "Não entrou no bitmap");
         super.onActivityResult(requestCode, resultCode, data);
+        galleryAddPic();
         if (data != null){
+            Log.i("FABIO", "Quase entrou no bitmap");
             Bundle bundle = data.getExtras();
             if (bundle != null){
+                Log.i("FABIO", "Entrou no bitmap");
                 Bitmap bitmap = (Bitmap) bundle.get("data");
                 switch (foto_selecionada){
                     case 1:

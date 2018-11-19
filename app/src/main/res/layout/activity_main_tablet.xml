@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="424dp"
+        android:layout_marginTop="455dp"
         android:textColor="@color/colorOpacity"
         android:textSize="20sp" />
 
