@@ -31,9 +31,7 @@ public class Estacao{
     private String tipo_partida;
     private String banco_capacitores;
     private String sistema_supervisionado;
-
-
-
+    private String projeto;
     private String numero_instalacao;
     private String endereco;
     private String observacoes;
@@ -46,7 +44,7 @@ public class Estacao{
         estacaoDB = new EstacaoDB(context);
     }
 
-    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float altura_monometrica_placa, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado,String numero_instalacao, String endereco, String observacoes) {
+    public Estacao(float tensao_placa, float tensao_medicao, float corrente_placa, float corrente_medicao, float potencia_ativa_placa, float potencia_ativa_medicao, float potencia_reativa_placa, float potencia_reativa_medicao, float fator_potencia_placa, float fator_potencia_medicao, float rotacao_placa, float rotacao_medicao, float vazao_placa, float altura_monometrica_placa, String fabricante_motor, String fabricante_bomba, String cidade, String local, String tipo_partida, String banco_capacitores, String sistema_supervisionado,String numero_instalacao, String endereco, String observacoes, String projeto) {
         this.tensao_placa = tensao_placa;
         this.tensao_medicao = tensao_medicao;
         this.corrente_placa = corrente_placa;
@@ -71,6 +69,7 @@ public class Estacao{
         this.observacoes = observacoes;
         this.numero_instalacao = numero_instalacao;
         this.endereco = endereco;
+        this.projeto = projeto;
     }
 
     public void estacaoFromJson(String _local, String _placa, String _medicao, String _sistema) {
@@ -108,6 +107,7 @@ public class Estacao{
             this.setLocal(local.optString("local"));
             this.setEndereco(local.optString("endereco"));
             this.setNumero_instalacao(local.optString("numero_instalacao"));
+            this.setProjeto(local.optString("projeto"));
 
         // SISTEMA
             this.setTipo_partida(sistema.optString("tipo_partida"));
@@ -169,6 +169,10 @@ public class Estacao{
         Log.i("ENDEREÇO", estacaoDB.save(this) + "");
     }
 
+
+    public String getProjeto() { return projeto; }
+
+    public void setProjeto(String projeto) { this.projeto = projeto; }
 
     public String getCidade() {
         return cidade;

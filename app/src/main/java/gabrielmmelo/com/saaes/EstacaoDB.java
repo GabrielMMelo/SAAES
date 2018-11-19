@@ -24,16 +24,16 @@ public class EstacaoDB extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.i(TAG, "Criando tabela 'Estacao'");
-        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT , cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, tipo_partida VARCHAR(100) NOT NULL, sistema_supervisionado VARCHAR(100) NOT NULL, banco_capacitores VARCHAR(100) NOT NULL, endereco VARCHAR(300) NOT NULL, numero_instalacao VARCHAR(100) NOT NULL, observacoes VARCHAR(300) NOT NULL, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, projeto INTEGER NOT NULL, cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, tipo_partida VARCHAR(100) NOT NULL, sistema_supervisionado VARCHAR(100) NOT NULL, banco_capacitores VARCHAR(100) NOT NULL, endereco VARCHAR(300) NOT NULL, numero_instalacao VARCHAR(100) NOT NULL, observacoes VARCHAR(300) NOT NULL, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (projeto) REFERENCES projeto (_id))");
         Log.i(TAG, "Tabela 'Estacao criada com sucesso");
-
-        Log.i(TAG, "Criando tabela Projeto");
-        db.execSQL("CREATE TABLE IF NOT EXISTS projeto(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT)");
-        Log.i(TAG, "Tabela projeto criada com sucesso");
     }
 
     public long save(Estacao estacao){
         SQLiteDatabase db = getWritableDatabase();
+
+        Log.i(TAG, "Criando tabela 'Estacao'");
+        db.execSQL("CREATE TABLE IF NOT EXISTS estacao(_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, projeto INTEGER NOT NULL, cidade VARCHAR(100) NOT NULL, local VARCHAR(100) NOT NULL, tensao_placa FLOAT NOT NULL, tensao_medicao FLOAT NOT NULL, corrente_placa FLOAT NOT NULL, corrente_medicao FLOAT NOT NULL, potencia_ativa_placa FLOAT NOT NULL, potencia_ativa_medicao FLOAT NOT NULL, potencia_reativa_placa FLOAT NOT NULL, potencia_reativa_medicao FLOAT NOT NULL, fator_potencia_placa FLOAT NOT NULL, fator_potencia_medicao FLOAT NOT NULL, rotacao_placa FLOAT NOT NULL, rotacao_medicao FLOAT NOT NULL, fabricante_motor VARCHAR(100) NOT NULL, fabricante_bomba VARCHAR(100) NOT NULL, vazao_placa FLOAT NOT NULL, altura_monometrica_placa FLOAT NOT NULL, tipo_partida VARCHAR(100) NOT NULL, sistema_supervisionado VARCHAR(100) NOT NULL, banco_capacitores VARCHAR(100) NOT NULL, endereco VARCHAR(300) NOT NULL, numero_instalacao VARCHAR(100) NOT NULL, observacoes VARCHAR(300) NOT NULL, Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY (projeto) REFERENCES projeto (_id))");
+        Log.i(TAG, "Tabela 'Estacao criada com sucesso");
 
         long id;
         try{
@@ -44,6 +44,7 @@ public class EstacaoDB extends SQLiteOpenHelper{
             values.put("local", estacao.getLocal());
             values.put("numero_instalacao", estacao.getNumero_instalacao());
             values.put("endereco", estacao.getEndereco());
+            values.put("projeto", estacao.getProjeto());
 
             Log.i("ENDEREÇO", estacao.getNumero_instalacao() + "");
 
@@ -155,7 +156,8 @@ public class EstacaoDB extends SQLiteOpenHelper{
                     c.getString(c.getColumnIndex("sistema_supervisionado")),
                     c.getString(c.getColumnIndex("numero_instalacao")),
                     c.getString(c.getColumnIndex("endereco")),
-                    c.getString(c.getColumnIndex("observacoes"))
+                    c.getString(c.getColumnIndex("observacoes")),
+                    c.getString(c.getColumnIndex("projeto"))
                 );
                 estacoes.add(estacao);
             }while(c.moveToNext());
@@ -204,7 +206,8 @@ public class EstacaoDB extends SQLiteOpenHelper{
                         c.getString(c.getColumnIndex("sistema_supervisionado")),
                         c.getString(c.getColumnIndex("numero_instalacao")),
                         c.getString(c.getColumnIndex("endereco")),
-                        c.getString(c.getColumnIndex("observacoes"))
+                        c.getString(c.getColumnIndex("observacoes")),
+                        c.getString(c.getColumnIndex("projeto"))
                 );
                 Log.i("sql", estacao.getCidade() + " valor de cidade pela classe");
                 return estacao;
@@ -250,7 +253,8 @@ public class EstacaoDB extends SQLiteOpenHelper{
                         c.getString(c.getColumnIndex("sistema_supervisionado")),
                         c.getString(c.getColumnIndex("numero_instalacao")),
                         c.getString(c.getColumnIndex("endereco")),
-                        c.getString(c.getColumnIndex("observacoes"))
+                        c.getString(c.getColumnIndex("observacoes")),
+                        c.getString(c.getColumnIndex("projeto"))
                 );
                 Log.i("sql", estacao.getCidade() + " valor de cidade pela classe");
                 return estacao;

@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(onClickBtnStart());
         Button btnExportCsv = (Button) findViewById(R.id.btnExportCsv);
         btnExportCsv.setOnClickListener(onClickBtnExportCsv());
+        Button btnCreateProject = (Button) findViewById(R.id.btnCreateProject);
+        btnCreateProject.setOnClickListener(onClickBtnCreateProject());
         TextView author = (TextView) findViewById(R.id.author);
         author.setText(Html.fromHtml("Por <a href=\"https://github.com/GabrielMMelo\"> Gabriel M. Melo </a>"));
         author.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
@@ -70,6 +72,19 @@ public class MainActivity extends AppCompatActivity {
         };
     }
 
+    /**
+     * OWN METHOD TO TREAT ON CLICK BUTTON EVENT
+     * @return
+     */
+    private View.OnClickListener onClickBtnCreateProject(){
+        return new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ProjetoActivity.class);
+                startActivity(intent);
+            }
+        };
+    }
     /**
      * AUX METHOD TO GET CONTEXT OF ACTIVITY
      * @return actual context

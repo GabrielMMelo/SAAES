@@ -46,7 +46,7 @@ public class Csv {
                 // MOTOR
 
 
-                writeToFile("estacoes.csv", "\nLocal, " + estacao.getCidade() + "/" + estacao.getLocal() + ", " + estacao.getEndereco() + ", Número de instalação: " + estacao.getNumero_instalacao());
+                writeToFile("estacoes.csv", "\nLocal, " + estacao.getProjeto() + " " + estacao.getCidade() + "/" + estacao.getLocal() + ", " + estacao.getEndereco() + ", Número de instalação: " + estacao.getNumero_instalacao());
                 writeToFile("estacoes.csv", "\nMotor, , Dados de Placa, Dados medidos");
                 writeToFile("estacoes.csv", "\n , Tensão (V), " + estacao.getTensao_placa() + ", " + estacao.getTensao_medicao());
                 writeToFile("estacoes.csv", "\n , Corrente (A), " + estacao.getCorrente_placa() + ", " + estacao.getCorrente_medicao());

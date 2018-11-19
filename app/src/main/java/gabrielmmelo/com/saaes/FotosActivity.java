@@ -36,6 +36,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import livroandroid.lib.utils.SDCardUtils;
+import livroandroid.lib.utils.ImageResizeUtils;
+
+
 public class FotosActivity extends AppCompatActivity implements FotosFragment.ActivityCommunicator{
 
 
@@ -53,6 +57,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
     private EstacaoDB estacaoDB = new EstacaoDB(getContext());
     private Estacao estacao = new Estacao(getContext());
     private Csv csv = new Csv(this);
+    private File file;
 
     @Override
     public void passPicturesToActivity(int id, Bitmap bitmap) {
@@ -99,7 +104,7 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
         Intent intent = getIntent();
         Bundle args = intent.getExtras();
 
-        Log.i("DEBUG","DADOS DO SISTEMA " + args.getString("sistema"));
+        Log.i("DEBUG","DADOS DO SISTEMA " + args.getString("local"));
 
         // Receive data by bundle from previous activity
         this.estacao.estacaoFromJson(args.getString("local"), args.getString("placa"), args.getString("medicao"), args.getString("sistema"));
@@ -118,11 +123,12 @@ public class FotosActivity extends AppCompatActivity implements FotosFragment.Ac
             @Override
             public void onClick(View v) {
                 estacao.prepararEscrita();
-                estacao.totalEstacao();
+                //estacao.totalEstacao();
 
+                //file = SDCardUtils.getPrivateFile(getBaseContext(), "teste.jpg", Environment.DIRECTORY_PICTURES);
                 //getEstacao("Gabriel");
 
-                saveImage(estacao.getCidade() + "_" + estacao.getLocal() + "_" + "Motor" + estacao.getTensao_placa() + "conjunto", conjuntoPicture);
+                saveImage(estacao.getProjeto() + "_" + estacao.getCidade() + "_" + estacao.getLocal() + "_" + "Motor" + estacao.getTensao_placa() + "conjunto", conjuntoPicture);
                 Toast.makeText(FotosActivity.this, "Dados salvos no banco de dados!", Toast.LENGTH_SHORT).show();
         /*      saveImage(motorBombaPicture);
                 saveImage(placaPicture);

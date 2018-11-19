@@ -7,17 +7,25 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.hardware.Camera;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
+import java.io.File;
+import java.net.URI;
+
+import livroandroid.lib.utils.SDCardUtils;
 
 
 /**
@@ -109,7 +117,11 @@ public class FotosFragment extends Fragment {
                 }
                 else{
                     foto_selecionada = 1;
+          //          File file;
+            //        file = SDCardUtils.getPrivateFile(getContext(), "teste.jpg", Environment.DIRECTORY_PICTURES);
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+              //      Uri uri = FileProvider.getUriForFile(getContext(),getContext().getApplicationContext().getPackageName() + ".provider", file);
+                //    intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
                     startActivityForResult(intent, 0);
                 }
 

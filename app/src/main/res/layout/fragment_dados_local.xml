@@ -11,6 +11,15 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
+        <Spinner
+            android:id="@+id/spinner_projetos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="41dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
