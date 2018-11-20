@@ -56,7 +56,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="114dp"
         android:background="@drawable/start_btn"
-        android:backgroundTint="@color/colorAccent"
         android:padding="@dimen/activity_horizontal_margin"
         android:text="@string/create_project"
         android:textColor="@color/colorLight"
@@ -78,13 +77,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        android:layout_width="197dp"
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="82dp"
-        tools:srcCompat="@mipmap/logo_ufla_transparente" />
-
+        android:background="@mipmap/logo_ufla_transparente" />
 
     <TextView
         android:id="@+id/author"
